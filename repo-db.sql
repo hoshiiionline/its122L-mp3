@@ -11,14 +11,13 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `test`
+-- Database: `horoscope_users`
 --
 
 -- --------------------------------------------------------
@@ -30,25 +29,25 @@ SET time_zone = "+00:00";
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `is_admin` int(1) NOT NULL,
-  `full_name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(150) NOT NULL,
   `birth_month` int(2) NOT NULL,
   `birth_day` int(2) NOT NULL,
   `birth_year` int(4) NOT NULL,
-  `password` varchar(150) NOT NULL,
   `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `users`
+--
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+INSERT INTO `users` (`id`,`is_admin`, `first_name`, `last_name`, `email`, `password`, `birth_month`, `birth_day`, `birth_year`, `created_at`) VALUES
+(0, 1, 'Todin', 'Castaneda', 'todin.castaneda@gmail.com', 'passwordADMIN', 2, 26, 2004, current_timestamp(6)),  
+(1, 0, 'Kyle', 'Flores', 'genekylemichaelf@gmail.com', 'kyleflores', 10, 14, 2003, current_timestamp(6)),
+(2, 0, 'Erin', 'Lorzano', 'erinlorzano@gmail.com', 'passwordUSER', 9, 28, 2003, current_timestamp(6));
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -58,7 +57,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

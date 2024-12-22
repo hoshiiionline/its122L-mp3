@@ -37,7 +37,7 @@ body {
 .form-title {
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 input, select, textarea {
@@ -80,4 +80,15 @@ a:hover {
     .form-section {
         width: 50%;
     }
+}
+.error-message {
+    background: none;
+    color: #ff4081;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
 }
