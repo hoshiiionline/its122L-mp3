@@ -40,12 +40,7 @@
 
             <!-- External Articles Section -->
             <div class="external-articles">
-                <h3>External Articles</h3>
-                <ul>
-                    <li><a href="#">Article 1: Understanding Your Zodiac Sign</a></li>
-                    <li><a href="#">Article 2: Horoscope Predictions 2024</a></li>
-                    <li><a href="#">Article 3: The Science Behind Astrology</a></li>
-                </ul>
+                <?php include 'news.php'?>
             </div>
         
         </div>
