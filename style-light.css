@@ -1,0 +1,45 @@
+body {
+    background-image: url("assets/backgrounds/pexels-rotating.jpg");
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.registration-container {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+}
+.illustration {
+    background: url('https://via.placeholder.com/400x600') no-repeat center center;
+    background-size: cover;
+    width: 50%;
+    display: none;
+}
+.form-section {
+    padding: 40px;
+    width: 100%;
+}
+.form-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+@media (min-width: 768px) {
+    .illustration {
+        display: block;
+    }
+    .form-section {
+        width: 50%;
+    }
+}
