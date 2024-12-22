@@ -15,12 +15,12 @@ Requirements:
 
  1. Use a webserver like XAMPP, WAMP or MAMP to create this website
  2. Use the following development tools: PHP, HTML, Javascripts, bootstrap and Photoshop or any image editor to create Zodic sign images(make sure that your image is in jpg format)
- 3.In order to do this you must create an Admin Page and use MySQL DB to create a date entry to enter the Zodiac Signs Description,Zodiac Sign Images, user's date of birth and user's detailed list.
+ 3. In order to do this you must create an Admin Page and use MySQL DB to create a date entry to enter the Zodiac Signs Description,Zodiac Sign Images, user's date of birth and user's detailed list.
  4. Create Registration, Login and Dashboard for the user.
  5. Create your own name and logo for your Horoscope Website use Photoshop or Illustrator make it more vivid not pixelated
- 6 Once the user entered their Details: Name,Gender and Date of Birth they will go to the Dashboard to see their Daily Horoscope, Description of Zodiac Sign and his/her daily horoscope for this day/month
- 6. This MP is by group. Max of 2 members.
- 7. Submission includes: Your Website in Zip file(includes complete code, images and others) and link if you created it in Free Webhosting, Screenshots and Demo Video.
+ 6. Once the user entered their Details: Name,Gender and Date of Birth they will go to the Dashboard to see their Daily Horoscope, Description of Zodiac Sign and his/her daily horoscope for this day/month
+ 7. This MP is by group. Max of 2 members.
+ 8. Submission includes: Your Website in Zip file(includes complete code, images and others) and link if you created it in Free Webhosting, Screenshots and Demo Video.
 
 
 Criteria for Scoring/Total of 100: 
