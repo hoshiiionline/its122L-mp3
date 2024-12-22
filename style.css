@@ -1,27 +1,270 @@
+/* Default body styles (if any) */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    font-family: sans-serif;
+    color: black;
 }
-.article {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
+
+/* Dashboard-specific styles */
+body.dashboard-page {
+    background-image: url("/assets/backgrounds/pexels-rotating.jpg");
+    margin: 0;
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    height: 100%;
+    padding-top: 80px;
 }
-.article h2 {
-    margin-top: 0;
+
+/* Registration-specific styles */
+body.registration-login-page {
+    background-image: url("/assets/backgrounds/pexels-rotating.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
 }
-.article a {
+
+/* Navbar Styles */
+.navbar {
+    background: rgba(106, 17, 203, 0.9); /* Semi-transparent background */
+    background: linear-gradient(to right, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+    color: white;
+    padding: 10px 30px; /* Add padding for a pill shape */
+    position: fixed; /* Fix the navbar to the viewport */
+    top: 20px; /* Position it below the top edge */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust to center based on width */
+    border-radius: 30px; /* Rounded edges for the pill shape */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Add a shadow for a floating effect */
+    z-index: 1000; /* Ensure it stays above other content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%; /* Adjust width as needed */
+}
+
+/* Navbar Container */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Navbar Title */
+.navbar-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navbar Links */
+.navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.navbar-links a {
+    color: white;
     text-decoration: none;
-    color: #1a0dab;
+    font-weight: bold;
+    padding: 5px 10px; /* Add padding for link items */
+    border-radius: 20px; /* Rounded edges for hover effect */
+    transition: background 0.3s ease;
 }
-.article p {
-    color: #555;
+
+.navbar-links a:hover {
+    background: rgba(255, 255, 255, 0.2); /* Highlight link on hover */
+    text-decoration: none;
 }
+
+/* Dashboard Styles */
+.dashboard {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    flex: 1;
+    height: calc(100vh - 120px);
+}
+
+/* Left Column */
+.left-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.horoscope-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Right Column */
+.right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Description Section */
+.description {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+}
+
+.description h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.description p {
+    margin: 5px 0;
+}
+
+/* External Articles */
 .external-articles {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    max-height: 400px;
     overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.external-articles::-webkit-scrollbar {
+    display: none;
+}
+
+.external-articles h3 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.external-articles ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.external-articles li {
+    margin-bottom: 10px;
+}
+
+.external-articles a {
+    color: #6a11cb;
+    text-decoration: none;
+}
+
+.external-articles a:hover {
+    text-decoration: underline;
+}
+
+/* Registration Form */
+.registration-container {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+}
+
+.illustration {
+    background: url('https://via.placeholder.com/400x600') no-repeat center center;
+    background-size: cover;
+    width: 50%;
+    display: none;
+}
+
+.form-section {
+    padding: 40px;
+    width: 100%;
+    color: #ffffff;
+}
+
+.form-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+input, select, textarea {
+    background: #222222;
+    color: #ffffff;
+    border: 1px solid #444444;
+}
+
+input::placeholder {
+    color: #aaaaaa;
+}
+
+/* Buttons */
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    border: none;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #2575fc, #6a11cb);
+}
+
+a {
+    color: #6a11cb;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Error Messages */
+.error-message {
+    background: none;
+    color: #ff4081;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    .illustration {
+        display: block;
+    }
+    .form-section {
+        width: 50%;
+    }
 }

@@ -41,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style-dark.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="registration-login-page">
     <div class="registration-container">
         <!-- Illustration Column -->
         <div class="illustration"></div>
