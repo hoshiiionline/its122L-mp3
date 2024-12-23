@@ -46,9 +46,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`,`is_admin`, `first_name`, `last_name`, `email`, `password`, `birth_month`, `birth_day`, `birth_year`, `created_at`) VALUES
-(0, 1, 'Todin', 'Castaneda', 'todin.castaneda@gmail.com', 'passwordADMIN', 2, 26, 2004, current_timestamp(6)),  
-(1, 0, 'Kyle', 'Flores', 'genekylemichaelf@gmail.com', 'kyleflores', 10, 14, 2003, current_timestamp(6)),
-(2, 0, 'Erin', 'Lorzano', 'erinlorzano@gmail.com', 'passwordUSER', 9, 28, 2003, current_timestamp(6));
+(0, 1, 'Todin', 'Castaneda', 'todin.castaneda@gmail.com', '$2y$12$uXbLUIvW3xvBekIMyNoFveyz1UCKZ9xuY8Pll.mx6PAgGxLswQMVy', 2, 26, 2004, current_timestamp(6)),  
+(1, 0, 'Kyle', 'Flores', 'genekylemichaelf@gmail.com', '$2y$12$rwobRHctp.0jVOwQLPF9ROQHJVSjp.Pg.P8nu9O1F6S3q9e3Uxipm', 10, 14, 2003, current_timestamp(6)),
+(2, 0, 'Erin', 'Lorzano', 'erinlorzano@gmail.com', '$2y$12$25XuOEw.hlj064v2sYgG8uNghcWyhKE7pKB3wPvt1FIs7Dy8ABzh6', 9, 28, 2003, current_timestamp(6));
 
 --
 -- AUTO_INCREMENT for dumped tables

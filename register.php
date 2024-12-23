@@ -19,19 +19,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if ($password != $confirmPassword) {
         $regis_err = "Passwords do not match!";
     } else {
-        $sql = "SELECT id FROM users WHERE email = '$email'";
-        $result = mysqli_query($conn, $sql);
+        $sql = "SELECT id FROM users WHERE email = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
 
-        if (mysqli_num_rows($result) > 0) {
+        if (mysqli_stmt_num_rows($stmt) > 0) {
             $regis_err = "User with email already exists!";
         } else {
-            $sql = "INSERT INTO users (first_name, last_name, email, password, birth_month, birth_day, birth_year, gender) VALUES ('$firstName', '$lastName', '$email', '$password', '$birthMonth', '$birthDate', '$birthYear', '$gender')";
-            if (mysqli_query($conn, $sql)) {
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO users (first_name, last_name, email, password, birth_month, birth_day, birth_year, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "ssssiiis", $firstName, $lastName, $email, $hashed_password, $birthMonth, $birthDate, $birthYear, $gender);
+            
+            if (mysqli_stmt_execute($stmt)) {
                 $regis_success = true;
             } else {
                 $regis_err = "Error: " . mysqli_error($conn);
             }
         }
+        mysqli_stmt_close($stmt);
     }
 }
 

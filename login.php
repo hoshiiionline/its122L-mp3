@@ -7,20 +7,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $query  = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        if ($row["is_admin"] == 1) {
+    $sql = "SELECT password, is_admin FROM users WHERE email = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $stored_hash, $is_admin);
+    mysqli_stmt_fetch($stmt);
+
+    if (password_verify($password, $stored_hash)) {
+        if ($is_admin == 1) {
             echo 'Login successful! You are an admin!';
         } else {
-            echo'Login successful! You are a user!';
+            echo 'Login successful! You are a user!';
         }
     } else {
-        $login_err = "Invalid email or password!";
+        $login_err = "Invalid email or password.";
     }
 
-    mysqli_close($conn);
+    mysqli_stmt_close($stmt);
 }
 ?>
 
