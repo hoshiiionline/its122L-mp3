@@ -9,3 +9,14 @@ function confirmRedirect() {
     
     return false; 
 }
+
+// opens confirmation pane if user wants to submit registration form
+function confirmRegister() {
+    var isConfirmed = confirm("Are you sure you want to submit this form?");
+    
+    if (isConfirmed) {
+        return true; 
+    }
+    
+    return false; 
+}

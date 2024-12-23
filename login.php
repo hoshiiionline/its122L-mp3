@@ -1,17 +1,7 @@
 <?php
-session_start();
+require "config.php";
+
 $login_err = "";
-
-$host = 'localhost';
-$db_username = 'root'; 
-$db_password = '';
-$database = 'horoscope_users';
-
-$conn = mysqli_connect($host, $db_username, $db_password, $database, null, '/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock');
-
-if (mysqli_connect_errno()) {  
-    die('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -65,10 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password">
                 </div>
-                <button type="submit" class="btn btn-primary">Log In!</button>
+                <button type="submit" class="btn btn-primary">Log In</button>
             </form>
             <p class="text-center mt-3">
-                Don't have an account? <a href="#">Sign Up!</a>
+                Don't have an account? <a href="register.php">Sign Up</a>
             </p>
         </div>
     </div>
