@@ -26,7 +26,25 @@
     <div class="dashboard">
         <!-- Left Column -->
         <div class="left-column">
-            <img src="https://via.placeholder.com/1000x1000" alt="Horoscope Wheel" class="horoscope-img">
+            <img src="/assets/horoscope-wheel.png" alt="Horoscope Wheel" class="horoscope-img">
+            <!--
+            <div id="horoscope-wheel">
+            <div class="sign" id="aries" onclick="selectSign('aries')">Aries</div>
+            <div class="sign" id="taurus" onclick="selectSign('taurus')">Taurus</div>
+            <div class="sign" id="gemini" onclick="selectSign('gemini')">Gemini</div>
+            <div class="sign" id="cancer" onclick="selectSign('cancer')">Cancer</div>
+            <div class="sign" id="leo" onclick="selectSign('leo')">Leo</div>
+            <div class="sign" id="virgo" onclick="selectSign('virgo')">Virgo</div>
+            <div class="sign" id="libra" onclick="selectSign('libra')">Libra</div>
+            <div class="sign" id="scorpio" onclick="selectSign('scorpio')">Scorpio</div>
+            <div class="sign" id="sagittarius" onclick="selectSign('sagittarius')">Sagittarius</div>
+            <div class="sign" id="capricorn" onclick="selectSign('capricorn')">Capricorn</div>
+            <div class="sign" id="aquarius" onclick="selectSign('aquarius')">Aquarius</div>
+            <div class="sign" id="pisces" onclick="selectSign('pisces')">Pisces</div>
+            </div>
+
+            <p>Selected Zodiac: <span id="selected-zodiac">Aries</span></p>
+            -->
         </div>
 
         <!-- Right Column -->
