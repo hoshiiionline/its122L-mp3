@@ -37,7 +37,7 @@ body.registration-login-page {
 /* Navbar Styles */
 .navbar {
     background: rgba(106, 17, 203, 0.9); /* Semi-transparent background */
-    background: linear-gradient(to right, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+    background: linear-gradient(to right, gray, rgba(37, 117, 252, 0.9));
     color: white;
     padding: 10px 30px; /* Add padding for a pill shape */
     position: fixed; /* Fix the navbar to the viewport */
@@ -183,6 +183,78 @@ body.registration-login-page {
     text-decoration: underline;
 }
 
+
+
+.circle-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .circle {
+    position: relative;
+    width: 100%; /* Set a fixed size for the circle */
+    height: 100%; /* Set a fixed size for the circle */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50%));
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    flex-wrap: wrap;
+    border-radius: 50%;
+  }
+  
+  .card {
+    position: absolute;
+    width: 135px;
+    height: 240px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    font-weight: bold;
+    transform-origin: 50% 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    background: #444; /* Default background color */
+  }
+  
+  .card:hover {
+    transform: scale(1.1) rotate(10deg); /* Subtle size increase and rotation */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Color gradient on hover */
+  }
+  
+  .card.active {
+    filter: hue-rotate(180deg); /* Adjust the hue to change blue to yellow */
+    transform: scale(1.5) rotate(10deg); /* Dramatic size increase */
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    z-index: 10; /* Bring active card to the front */
+  }
+  
+  .card:nth-child(1) { transform: rotate(0deg) translateY(-250px); }
+  .card:nth-child(2) { transform: rotate(30deg) translateY(-250px); }
+  .card:nth-child(3) { transform: rotate(60deg) translateY(-250px); }
+  .card:nth-child(4) { transform: rotate(90deg) translateY(-250px); }
+  .card:nth-child(5) { transform: rotate(120deg) translateY(-250px); }
+  .card:nth-child(6) { transform: rotate(150deg) translateY(-250px); }
+  .card:nth-child(7) { transform: rotate(180deg) translateY(-250px); }
+  .card:nth-child(8) { transform: rotate(210deg) translateY(-250px); }
+  .card:nth-child(9) { transform: rotate(240deg) translateY(-250px); }
+  .card:nth-child(10) { transform: rotate(270deg) translateY(-250px); }
+  .card:nth-child(11) { transform: rotate(300deg) translateY(-250px); }
+  .card:nth-child(12) { transform: rotate(330deg) translateY(-250px); }
+  
+
+
+
 /* Registration Form */
 .registration-container {
     background: rgba(0, 0, 0, 0.8);
@@ -279,25 +351,7 @@ a:hover {
     text-align: center;
     line-height: 50px;
     cursor: pointer;
-}
-
-#aries { transform: rotate(0deg) translate(120px) rotate(0deg); }
-#taurus { transform: rotate(30deg) translate(120px) rotate(-30deg); }
-#gemini { transform: rotate(60deg) translate(120px) rotate(-60deg); }
-#cancer { transform: rotate(90deg) translate(120px) rotate(-90deg); }
-#leo { transform: rotate(120deg) translate(120px) rotate(-120deg); }
-#virgo { transform: rotate(150deg) translate(120px) rotate(-150deg); }
-#libra { transform: rotate(180deg) translate(120px) rotate(-180deg); }
-#scorpio { transform: rotate(210deg) translate(120px) rotate(-210deg); }
-#sagittarius { transform: rotate(240deg) translate(120px) rotate(-240deg); }
-#capricorn { transform: rotate(270deg) translate(120px) rotate(-270deg); }
-#aquarius { transform: rotate(300deg) translate(120px) rotate(-300deg); }
-#pisces { transform: rotate(330deg) translate(120px) rotate(-330deg); }
-
-.selected {
-background-color: yellow;  /* Highlight the selected zodiac */
-}
-  
+} 
 
 /* Media Queries */
 @media (min-width: 768px) {

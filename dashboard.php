@@ -26,25 +26,22 @@
     <div class="dashboard">
         <!-- Left Column -->
         <div class="left-column">
-            <img src="/assets/horoscope-wheel.png" alt="Horoscope Wheel" class="horoscope-img">
-            <!--
-            <div id="horoscope-wheel">
-            <div class="sign" id="aries" onclick="selectSign('aries')">Aries</div>
-            <div class="sign" id="taurus" onclick="selectSign('taurus')">Taurus</div>
-            <div class="sign" id="gemini" onclick="selectSign('gemini')">Gemini</div>
-            <div class="sign" id="cancer" onclick="selectSign('cancer')">Cancer</div>
-            <div class="sign" id="leo" onclick="selectSign('leo')">Leo</div>
-            <div class="sign" id="virgo" onclick="selectSign('virgo')">Virgo</div>
-            <div class="sign" id="libra" onclick="selectSign('libra')">Libra</div>
-            <div class="sign" id="scorpio" onclick="selectSign('scorpio')">Scorpio</div>
-            <div class="sign" id="sagittarius" onclick="selectSign('sagittarius')">Sagittarius</div>
-            <div class="sign" id="capricorn" onclick="selectSign('capricorn')">Capricorn</div>
-            <div class="sign" id="aquarius" onclick="selectSign('aquarius')">Aquarius</div>
-            <div class="sign" id="pisces" onclick="selectSign('pisces')">Pisces</div>
+            <div class="circle-container">
+                <div class="circle">
+                    <img src="/assets/zodiacs-alt/Aries.png" class="card" alt="Image 1">
+                    <img src="/assets/zodiacs-alt/Taurus.png" class="card" alt="Image 2">
+                    <img src="/assets/zodiacs-alt/Gemini.png" class="card" alt="Image 3">
+                    <img src="/assets/zodiacs-alt/Cancer.png" class="card" alt="Image 4">
+                    <img src="/assets/zodiacs-alt/Leo.png" class="card" alt="Image 5">
+                    <img src="/assets/zodiacs-alt/Virgo.png" class="card" alt="Image 6">
+                    <img src="/assets/zodiacs-alt/Libra.png" class="card" alt="Image 7">
+                    <img src="/assets/zodiacs-alt/Scorpio.png" class="card" alt="Image 8">
+                    <img src="/assets/zodiacs-alt/Sagittarius.png" class="card" alt="Image 9">
+                    <img src="/assets/zodiacs-alt/Capricorn.png" class="card" alt="Image 10">
+                    <img src="/assets/zodiacs-alt/Aquarius.png" class="card" alt="Image 11">
+                    <img src="/assets/zodiacs-alt/Pisces.png" class="card" alt="Image 12">
+                </div>
             </div>
-
-            <p>Selected Zodiac: <span id="selected-zodiac">Aries</span></p>
-            -->
         </div>
 
         <!-- Right Column -->
@@ -66,5 +63,6 @@
         
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
