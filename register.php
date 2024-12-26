@@ -13,8 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $birthDate = isset($_POST["birthDate"]) ? $_POST["birthDate"] :"";
     $birthYear = isset($_POST["birthYear"]) ? $_POST["birthYear"] :"";
     $gender = isset($_POST["gender"]) ? $_POST["gender"]: "";
+    $zodiac = '';
 
-    if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($confirmPassword) || empty($birthMonth) || empty($birthDate) || empty($birthYear) || empty($gender) || empty($gender)) {
+    if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($confirmPassword) || empty($birthMonth) || empty($birthDate) || empty($birthYear) || empty($gender)) {
         $regis_err = "Please fill out all fields!";
     } else if ($password != $confirmPassword) {
         $regis_err = "Passwords do not match!";
@@ -28,21 +29,111 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (mysqli_stmt_num_rows($stmt) > 0) {
             $regis_err = "User with email already exists!";
         } else {
+            switch($birthMonth) {
+                case 1:
+                    if ($birthDate >= 20) {
+                        $zodiac = "Aquarius";
+                    } else {
+                        $zodiac = "Capricorn";
+                    }
+                    break;
+                case 2:
+                    if ($birthDate >= 19) {
+                        $zodiac = "Pisces";
+                    } else {
+                        $zodiac = "Aquarius";
+                    }
+                    break;
+                case 3: 
+                    if ($birthDate >= 21) {
+                        $zodiac = "Aries";
+                    } else {
+                        $zodiac = "Pisces";
+                    }
+                    break;
+                case 4: 
+                    if ($birthDate >= 20) {
+                        $zodiac = "Taurus";
+                    } else {
+                        $zodiac = "Aries";
+                    }
+                    break;
+                case 5: 
+                    if ($birthDate >= 20) {
+                        $zodiac = "Gemini";
+                    } else {
+                        $zodiac = "Taurus";
+                    }
+                    break;
+                case 6: 
+                    if ($birthDate >= 21) {
+                        $zodiac = "Cancer";
+                    } else {
+                        $zodiac = "Gemini";
+                    }
+                    break;
+                case 7:
+                    if ($birthDate >= 23) {
+                        $zodiac = "Leo";
+                    } else {
+                        $zodiac = "Cancer";
+                    }
+                    break;
+                case 8: 
+                    if ($birthDate >= 23) {
+                        $zodiac = "Virgo";
+                    } else {
+                        $zodiac = "Leo";
+                    }
+                    break;
+                case 9:
+                    if ($birthDate >= 23) {
+                        $zodiac = "Libra";
+                    } else {    
+                        $zodiac = "Virgo";
+                    }
+                    break;
+                case 10: 
+                    if ($birthDate >= 23) {
+                        $zodiac = "Scorpio";
+                    } else {
+                        $zodiac = "Libra";
+                    }
+                    break;
+                case 11: 
+                    if ($birthDate >= 22) {
+                        $zodiac = "Sagittarius";
+                    } else {
+                        $zodiac = "Scorpio";
+                    }
+                    break;
+                case 12: 
+                    if ($birthDate >= 22) {
+                        $zodiac = "Capricorn";
+                    } else {
+                        $zodiac = "Sagittarius";
+                    }
+                    break;
+                default: 
+                    $zodiac = "Invalid birth date";
+            }
+
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (first_name, last_name, email, password, birth_month, birth_day, birth_year, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            
+            $sql = "INSERT INTO users (first_name, last_name, email, password, birth_month, birth_day, birth_year, gender, zodiac_sign) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "ssssiiis", $firstName, $lastName, $email, $hashed_password, $birthMonth, $birthDate, $birthYear, $gender);
+            mysqli_stmt_bind_param($stmt, "ssssiiiss", $firstName, $lastName, $email, $hashed_password, $birthMonth, $birthDate, $birthYear, $gender, $zodiac);
             
             if (mysqli_stmt_execute($stmt)) {
                 $regis_success = true;
             } else {
                 $regis_err = "Error: " . mysqli_error($conn);
             }
+            mysqli_stmt_close($stmt);
         }
-        mysqli_stmt_close($stmt);
     }
+    mysqli_close($conn);
 }
-
 ?>
 
 <!DOCTYPE html>
