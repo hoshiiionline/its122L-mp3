@@ -1,5 +1,7 @@
 <?php
-$rssFeedUrl = 'https://news.google.com/rss/search?q=horoscope';
+$keyword = isset($_GET["keyword"]) ? $_GET["keyword"] :"horoscope";
+
+$rssFeedUrl = 'https://news.google.com/rss/search?q=horoscope' .urlencode($keyword);
 
 $rssFeed = simplexml_load_file($rssFeedUrl);
 

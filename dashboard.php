@@ -1,3 +1,34 @@
+<?php
+require 'config.php';
+
+$selectedAlt = '';
+$zodiac_name = 'Select a zodiac sign from the horoscope wheel.';
+$zodiac_date_range = 'The date range will pop up here';    
+$zodiac_desc = 'Find out about zodiac signs by clicking on the cards in the horoscope wheel.';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['alt'])) {
+    $selectedAlt = htmlspecialchars($_POST['alt']);
+}
+
+if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc FROM zodiac_signs WHERE zodiac_name = ?")) {
+    $stmt->bind_param("s", $selectedAlt);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $zodiac_name = $row['zodiac_name'];
+            $zodiac_date_range = $row['zodiac_date_range'];
+            $zodiac_desc = $row['zodiac_desc'];
+        }
+    } 
+
+    $stmt->close();
+} else {
+    echo "Failed to prepare the SQL statement.";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,18 +59,18 @@
         <div class="left-column">
             <div class="circle-container">
                 <div class="circle">
-                    <img src="/assets/zodiacs-alt/Aries.png" class="card" alt="Image 1">
-                    <img src="/assets/zodiacs-alt/Taurus.png" class="card" alt="Image 2">
-                    <img src="/assets/zodiacs-alt/Gemini.png" class="card" alt="Image 3">
-                    <img src="/assets/zodiacs-alt/Cancer.png" class="card" alt="Image 4">
-                    <img src="/assets/zodiacs-alt/Leo.png" class="card" alt="Image 5">
-                    <img src="/assets/zodiacs-alt/Virgo.png" class="card" alt="Image 6">
-                    <img src="/assets/zodiacs-alt/Libra.png" class="card" alt="Image 7">
-                    <img src="/assets/zodiacs-alt/Scorpio.png" class="card" alt="Image 8">
-                    <img src="/assets/zodiacs-alt/Sagittarius.png" class="card" alt="Image 9">
-                    <img src="/assets/zodiacs-alt/Capricorn.png" class="card" alt="Image 10">
-                    <img src="/assets/zodiacs-alt/Aquarius.png" class="card" alt="Image 11">
-                    <img src="/assets/zodiacs-alt/Pisces.png" class="card" alt="Image 12">
+                    <img src="/assets/zodiacs-alt/Aries.png" class="card" alt="Aries">
+                    <img src="/assets/zodiacs-alt/Taurus.png" class="card" alt="Taurus">
+                    <img src="/assets/zodiacs-alt/Gemini.png" class="card" alt="Gemini">
+                    <img src="/assets/zodiacs-alt/Cancer.png" class="card" alt="Cancer">
+                    <img src="/assets/zodiacs-alt/Leo.png" class="card" alt="Leo">
+                    <img src="/assets/zodiacs-alt/Virgo.png" class="card" alt="Virgo">
+                    <img src="/assets/zodiacs-alt/Libra.png" class="card" alt="Libra">
+                    <img src="/assets/zodiacs-alt/Scorpio.png" class="card" alt="Scorpio">
+                    <img src="/assets/zodiacs-alt/Sagittarius.png" class="card" alt="Sagittarius">
+                    <img src="/assets/zodiacs-alt/Capricorn.png" class="card" alt="Capricorn">
+                    <img src="/assets/zodiacs-alt/Aquarius.png" class="card" alt="Aquarius">
+                    <img src="/assets/zodiacs-alt/Pisces.png" class="card" alt="Pisces">
                 </div>
             </div>
         </div>
@@ -48,21 +79,54 @@
         <div class="right-column">
             <!-- Description Section -->
             <div class="description">
-                <h2>Zodiac Sign</h2>
-                <p><strong>Date Range:</strong> March 21 - April 19</p>
+                <h2>Zodiac Sign: <?php echo"$zodiac_name"?></h2>
+                <p><strong>Date Range:</strong> <?php echo"$zodiac_date_range"?></p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. 
-                    Cras venenatis euismod malesuada.
+                    <?php echo "$zodiac_desc"?>
                 </p>
             </div>
 
             <!-- External Articles Section -->
             <div class="external-articles">
-                <?php include 'news.php'?>
+            <?php
+                $keyword = $zodiac_name;
+                ob_start();
+
+                $tempFile = tmpfile();
+                $tempFilePath = stream_get_meta_data($tempFile)['uri'];
+                $phpCode = '<?php $_GET["keyword"] = "' . addslashes($keyword) . '"; include "news.php"; ?>';
+                fwrite($tempFile, $phpCode);
+
+                include $tempFilePath;
+
+                ob_end_flush();
+
+                fclose($tempFile);
+    ?>
             </div>
         
         </div>
     </div>
+    
+    <form id="altForm" method="POST" style="display: none;">
+        <input type="hidden" name="alt" id="altInput">
+    </form>
+
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            const altForm = document.getElementById('altForm');
+            const altInput = document.getElementById('altInput');
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const altText = card.alt;
+                    altInput.value = altText;
+                    altForm.submit();
+                });
+            });
+        });
+    </script>
 </body>
 </html>

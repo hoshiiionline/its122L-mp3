@@ -30,3 +30,28 @@ cards.forEach(card => {
     card.classList.add('active');
   });
 });
+
+//
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.card');
+
+  cards.forEach(card => {
+      card.addEventListener('click', () => {
+          const altText = card.alt;
+
+          // Send the alt text to the server using fetch
+          fetch('alt_retrieve.php', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: 'alt=' + encodeURIComponent(altText),
+          })
+          .then(response => response.text())
+          .then(data => {
+              console.log('PHP variable set:', data);
+          })
+          .catch(error => console.error('Error:', error));
+      });
+  });
+});
