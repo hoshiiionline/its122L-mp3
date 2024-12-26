@@ -108,6 +108,36 @@ body.registration-login-page {
     height: calc(100vh - 120px);
 }
 
+.center-column {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 auto; /* This will center the div horizontally */
+}
+
+/* Description Section */
+.profile-section {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+}
+
+.profile-section h2 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.profile-section p {
+    margin: 5px 0;
+}
+
+
 /* Left Column */
 .left-column {
     flex: 1;
