@@ -55,3 +55,27 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 });
+
+// Function to confirm user deletion
+function confirmDeleteUser() {
+  var isConfirmed = confirm("Are you sure you want to delete this user?");
+  
+  if (isConfirmed) {
+      alert("User has been deleted!"); 
+      return true; 
+  }
+  
+  return false; 
+}
+
+// Function to confirm user edit
+function confirmEditUser() {
+  var isConfirmed = confirm("Are you sure you want to make changes to user?");
+  
+  if (isConfirmed) {
+      alert("User record has been updated!"); 
+      return true; 
+  }
+  
+  return false; 
+}
