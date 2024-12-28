@@ -43,7 +43,7 @@ body.registration-login-page {
 }
 
 /* admin page specific styles */
-body.dashboard-page {
+body.dashboard-admin-page {
     background-image: url("/assets/backgrounds/pexels-rotating.jpg");
     background-size: cover;
     margin: 0;
@@ -58,6 +58,7 @@ body.dashboard-page {
 
 /* Navbar Styles */
 .navbar {
+    all: unset; /* Remove all inherited styles */
     background: rgba(106, 17, 203, 0.9); /* Semi-transparent background */
     color: white;
     padding: 10px 30px; /* Add padding for a pill shape */
@@ -70,7 +71,8 @@ body.dashboard-page {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 84%; /* Adjust width as needed */
+    width: 85%; /* Adjust width as needed */
+    border-radius: 50px; /* Add this for rounded edges */
 }
 
 /* Navbar Container */
@@ -124,7 +126,6 @@ body.dashboard-page {
     display: flex;
     width: 50%;
     justify-content: center;
-    background: #1e1e1e;
     border-radius: 10px;
     padding: 20px;
     margin: 0 auto; /* This will center the div horizontally */
@@ -136,6 +137,26 @@ body.dashboard-page {
     padding: 20px;
     border-radius: 10px;
     flex: 1;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: auto;
+    display: block; /* Removes any inline-block spacing issues */
+    margin-left: auto; /* Centers the image horizontally */
+    margin-right: auto; /* Centers the image horizontally */
+    margin-top: 64px;
+}
+
+.profile-section .form-section {
+    width: 100%;
+}
+
+.profile-section .form-section form {
+    width: 100%; /* Ensures form spans the width of its container */
+    height: 100%;
+    padding: 20px; /* Adds inner spacing */
+    border-radius: 8px; /* Rounds the corners */
 }
 
 .profile-section h2 {
