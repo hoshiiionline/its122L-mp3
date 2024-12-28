@@ -97,14 +97,42 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
         <div class="right-column">
             <!-- Description Section -->
             <div class="description">
-                <h2>Zodiac Sign: <?php echo"$zodiac_name"?></h2>
-                <p><strong>Date Range:</strong> <?php echo"$zodiac_date_range"?></p>
-                <p>
-                    <?php echo "$zodiac_desc"?>
-                </p>
+            <?php 
+                if ($showWheel) {
+                    echo '
+                    <div class="zodiac-table-container">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Zodiac Name</th>
+                            <th>Date Range</th>
+                            <th>Description</th>
+                            <th>Operations</th>
+                        </tr>
+                        </thead>';
+                        $result = mysqli_query($conn, "SELECT * FROM zodiac_signs ORDER BY id DESC");
+                        if (mysqli_num_rows($result) > 0) {
+                            while($user_data = mysqli_fetch_array($result)) {         
+                                echo "<tr>";
+                                echo "<td>".htmlspecialchars($user_data['zodiac_name'])."</td>";
+                                echo "<td>".htmlspecialchars($user_data['zodiac_date_range'])."</td>";
+                                echo "<td>".htmlspecialchars($user_data['zodiac_desc'])."</td>";   
+                                echo "<td><a href='edit.php?id=".htmlspecialchars($user_data['id'])."' class='btn btn-warning btn-xs'>Edit</a> | 
+                                <a href='delete.php?id=".htmlspecialchars($user_data['id'])."' class='btn btn-danger btn-xs' onclick='return confirmDeleteUser();'>Delete</a>
+                                </td>
+                                </tr>"; 
+                            }
+                        }
+                    echo '</table>
+                    </div>';
+                } else {
+                    echo "<h2>Zodiac Sign: $zodiac_name</h2>
+                            <p><strong>Date Range:</strong> $zodiac_date_range</p>
+                            <p>$zodiac_desc</p>";
+            }
+            ?>
             </div>
-
-            <!-- External Articles Section -->
+            <!-- View Users Section -->
             <div class="external-articles">
                 <div class="table-container">
                     <table class="table table-bordered">
@@ -179,6 +207,7 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
                 });
             });
         });
+        
         document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.card-alternative');
             const altForm = document.getElementById('altForm');
