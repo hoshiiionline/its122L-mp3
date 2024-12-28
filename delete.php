@@ -1,13 +1,26 @@
-<?php
-
+<?php 
 include_once("config.php");
 
-// Get id from URL to delete that user
-$id = $_GET['id'];
+$table = '';
 
-// Delete user row from table based on given id
-$result = mysqli_query($conn, "DELETE FROM users WHERE id=$id");
+if (isset($_GET['id']) && isset($_GET['table'])) {
+    $id = htmlspecialchars($_GET['id']);
+    $table = htmlspecialchars($_GET['table']);
+} elseif (isset($_POST['id']) && isset($_POST['table'])) {
+    $id = htmlspecialchars($_POST['id']);
+    $table = htmlspecialchars($_POST['table']);
+} else {
+    echo 'Error passing information.';
+    exit;
+}
 
-// After delete redirect to Home, so that latest user list will be displayed.
+if ($table == 'users') {
+    $result = mysqli_query($conn, "DELETE FROM users WHERE id=$id");
+} else if ($table == 'zodiac') {
+    $result = mysqli_query($conn, "DELETE FROM zodiac_signs WHERE id=$id");
+} else {
+    echo "Error: Table not found.";
+}
+
 header("Location:admin.php");
 ?>
