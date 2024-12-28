@@ -117,8 +117,8 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
                                 echo "<td>".htmlspecialchars($user_data['zodiac_name'])."</td>";
                                 echo "<td>".htmlspecialchars($user_data['zodiac_date_range'])."</td>";
                                 echo "<td>".htmlspecialchars($user_data['zodiac_desc'])."</td>";   
-                                echo "<td><a href='edit.php?id=".htmlspecialchars($user_data['id'])."' class='btn btn-warning btn-xs'>Edit</a> | 
-                                <a href='delete.php?id=".htmlspecialchars($user_data['id'])."' class='btn btn-danger btn-xs' onclick='return confirmDeleteUser();'>Delete</a>
+                                echo "<td><a href='edit.php?id=".htmlspecialchars($user_data['id'])."&table=zodiac' class='btn btn-warning btn-xs'>Edit</a> | 
+                                <a href='delete.php?id=".htmlspecialchars($user_data['id'])."&table=zodiac' class='btn btn-danger btn-xs' onclick='return confirmDeleteUser();'>Delete</a>
                                 </td>
                                 </tr>"; 
                             }
@@ -158,8 +158,8 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
                                     echo "<td>".htmlspecialchars($user_data['birth_month'])."/".htmlspecialchars($user_data['birth_day'])."/".htmlspecialchars($user_data['birth_year'])."</td>";
                                     echo "<td>".htmlspecialchars($user_data['gender'])."</td>";
                                     echo "<td>".htmlspecialchars($user_data['zodiac_sign'])."</td>";
-                                    echo "<td><a href='edit.php?id=".htmlspecialchars($user_data['id'])."' class='btn btn-warning btn-xs'>Edit</a> | 
-                                    <a href='delete.php?id=".htmlspecialchars($user_data['id'])."' class='btn btn-danger btn-xs' onclick='return confirmDeleteUser();'>Delete</a>
+                                    echo "<td><a href='edit.php?id=".htmlspecialchars($user_data['id'])."&table=users' class='btn btn-warning btn-xs'>Edit</a> | 
+                                    <a href='delete.php?id=".htmlspecialchars($user_data['id'])."&table=zodiac' class='btn btn-danger btn-xs' onclick='return confirmDeleteUser();'>Delete</a>
                                     </td>
                                     </tr>";        
                                 }

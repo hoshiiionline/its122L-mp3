@@ -58,10 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Function to confirm user deletion
 function confirmDeleteUser() {
-  var isConfirmed = confirm("Are you sure you want to delete this user?");
+  var isConfirmed = confirm("Are you sure you want to delete this record?");
   
   if (isConfirmed) {
-      alert("User has been deleted!"); 
+      alert("Record has been deleted!"); 
       return true; 
   }
   
@@ -70,10 +70,10 @@ function confirmDeleteUser() {
 
 // Function to confirm user edit
 function confirmEditUser() {
-  var isConfirmed = confirm("Are you sure you want to make changes to user?");
+  var isConfirmed = confirm("Are you sure you want to make changes to this record?");
   
   if (isConfirmed) {
-      alert("User record has been updated!"); 
+      alert("Record has been updated!"); 
       return true; 
   }
   
