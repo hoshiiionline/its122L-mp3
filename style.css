@@ -145,7 +145,7 @@ body.dashboard-admin-page {
     display: block; /* Removes any inline-block spacing issues */
     margin-left: auto; /* Centers the image horizontally */
     margin-right: auto; /* Centers the image horizontally */
-    margin-top: 64px;
+    margin-top: 32px;
 }
 
 .profile-section .form-section {
@@ -170,6 +170,20 @@ body.dashboard-admin-page {
     margin: 5px 0;
 }
 
+#actionButtons {
+    display:none; 
+    width: 100%; 
+    margin: 0 auto; 
+    text-align: center;
+}
+
+#change-details {
+    display: block;
+}
+
+#change-password {
+    display: none;
+}
 
 /* Left Column */
 .left-column {

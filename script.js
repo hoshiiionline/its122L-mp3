@@ -79,3 +79,81 @@ function confirmEditUser() {
   
   return false; 
 }
+
+function makeEditable() {
+    // Make all form fields editable
+    document.getElementById('firstName').removeAttribute('readonly');
+    document.getElementById('lastName').removeAttribute('readonly');
+    document.getElementById('email').removeAttribute('readonly');
+    document.getElementById('birthMonth').removeAttribute('readonly');
+    document.getElementById('birthDate').removeAttribute('readonly');
+    document.getElementById('birthYear').removeAttribute('readonly');
+    
+    // Enable gender radio buttons
+    //document.getElementById('male').removeAttribute('disabled');
+    //document.getElementById('female').removeAttribute('disabled');
+    //document.getElementById('other').removeAttribute('disabled');
+    
+    // Change background color back to normal
+    document.querySelectorAll('input[readonly]').forEach(function(input) {
+        input.style.backgroundColor = '';
+    });
+    document.querySelectorAll('input[disabled]').forEach(function(input) {
+        input.style.backgroundColor = '';
+    });
+
+    // Show Submit and Cancel buttons
+    document.getElementById('actionButtons').style.display = 'block';
+
+    document.getElementById('updateButton').style.display = 'none';
+}
+
+function switchChangePassword(){
+    document.getElementById('change-details').style.display = 'none';
+
+    document.getElementById('change-password').style.display = 'block';
+}
+
+function switchChangeDetails(){
+    document.getElementById('change-details').style.display = 'block';
+
+    document.getElementById('change-password').style.display = 'none';
+}
+
+// Initially set background color for readonly and disabled inputs
+window.onload = function() {
+    document.querySelectorAll('input[readonly]').forEach(function(input) {
+        input.style.backgroundColor = '#f0f0f0';  // Light gray color
+    });
+    document.querySelectorAll('input[disabled]').forEach(function(input) {
+        input.style.backgroundColor = '#f0f0f0';  // Light gray color
+    });
+};
+
+function cancelEdit() {
+    // Reset all fields to non-editable
+    document.getElementById('firstName').setAttribute('readonly', true);
+    document.getElementById('lastName').setAttribute('readonly', true);
+    document.getElementById('email').setAttribute('readonly', true);
+    document.getElementById('birthMonth').setAttribute('readonly', true);
+    document.getElementById('birthDate').setAttribute('readonly', true);
+    document.getElementById('birthYear').setAttribute('readonly', true);
+
+    // Disable gender radio buttons
+    document.getElementById('male').setAttribute('disabled', true);
+    document.getElementById('female').setAttribute('disabled', true);
+    document.getElementById('other').setAttribute('disabled', true);
+
+    // Change background color to gray for readonly and disabled fields
+    document.querySelectorAll('input[readonly]').forEach(function(input) {
+        input.style.backgroundColor = '#f0f0f0';  // Light gray color
+    });
+    document.querySelectorAll('input[disabled]').forEach(function(input) {
+        input.style.backgroundColor = '#f0f0f0';  // Light gray color
+    });
+
+    // Hide Submit and Cancel buttons
+    document.getElementById('actionButtons').style.display = 'none';
+
+    document.getElementById('updateButton').style.display = 'block';
+}
