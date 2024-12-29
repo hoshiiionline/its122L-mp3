@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
+    <title>Zodiak Bear| My Zodiak Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -153,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
-            <h1 class="navbar-title">Zodiac Dashboard</h1>
+            <h1 class="navbar-title">Zodiak Bear</h1>
             <ul class="navbar-links">
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="zodiacs.php">Zodiac Wheel</a></li>

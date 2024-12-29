@@ -85,9 +85,9 @@ function makeEditable() {
     document.getElementById('firstName').removeAttribute('readonly');
     document.getElementById('lastName').removeAttribute('readonly');
     document.getElementById('email').removeAttribute('readonly');
-    document.getElementById('birthMonth').removeAttribute('readonly');
-    document.getElementById('birthDate').removeAttribute('readonly');
-    document.getElementById('birthYear').removeAttribute('readonly');
+    //document.getElementById('birthMonth').removeAttribute('readonly');
+    //document.getElementById('birthDate').removeAttribute('readonly');
+    //document.getElementById('birthYear').removeAttribute('readonly');
     
     // Enable gender radio buttons
     //document.getElementById('male').removeAttribute('disabled');
@@ -135,9 +135,9 @@ function cancelEdit() {
     document.getElementById('firstName').setAttribute('readonly', true);
     document.getElementById('lastName').setAttribute('readonly', true);
     document.getElementById('email').setAttribute('readonly', true);
-    document.getElementById('birthMonth').setAttribute('readonly', true);
-    document.getElementById('birthDate').setAttribute('readonly', true);
-    document.getElementById('birthYear').setAttribute('readonly', true);
+    //document.getElementById('birthMonth').setAttribute('readonly', true);
+    //document.getElementById('birthDate').setAttribute('readonly', true);
+    //document.getElementById('birthYear').setAttribute('readonly', true);
 
     // Disable gender radio buttons
     document.getElementById('male').setAttribute('disabled', true);

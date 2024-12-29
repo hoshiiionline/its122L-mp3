@@ -71,7 +71,7 @@ body.dashboard-admin-page {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 85%; /* Adjust width as needed */
+    width: 80%; /* Adjust width as needed */
     border-radius: 50px; /* Add this for rounded edges */
 }
 
@@ -271,8 +271,8 @@ body.dashboard-admin-page {
 
 .circle-container {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
   }
   
   .circle {
@@ -311,6 +311,7 @@ body.dashboard-admin-page {
   }
 
   .card-alternative {
+    cursor: pointer;
     position: absolute;
     width: 405px;
     height: 720px;
@@ -342,18 +343,18 @@ body.dashboard-admin-page {
     z-index: 10; /* Bring active card to the front */
   }
   
-  .card:nth-child(1) { transform: rotate(0deg) translateY(-250px); }
-  .card:nth-child(2) { transform: rotate(30deg) translateY(-250px); }
-  .card:nth-child(3) { transform: rotate(60deg) translateY(-250px); }
-  .card:nth-child(4) { transform: rotate(90deg) translateY(-250px); }
-  .card:nth-child(5) { transform: rotate(120deg) translateY(-250px); }
-  .card:nth-child(6) { transform: rotate(150deg) translateY(-250px); }
-  .card:nth-child(7) { transform: rotate(180deg) translateY(-250px); }
-  .card:nth-child(8) { transform: rotate(210deg) translateY(-250px); }
-  .card:nth-child(9) { transform: rotate(240deg) translateY(-250px); }
-  .card:nth-child(10) { transform: rotate(270deg) translateY(-250px); }
-  .card:nth-child(11) { transform: rotate(300deg) translateY(-250px); }
-  .card:nth-child(12) { transform: rotate(330deg) translateY(-250px); }
+  .card:nth-child(1) { transform: rotate(0deg) translateY(-220px); }
+  .card:nth-child(2) { transform: rotate(30deg) translateY(-220px); }
+  .card:nth-child(3) { transform: rotate(60deg) translateY(-220px); }
+  .card:nth-child(4) { transform: rotate(90deg) translateY(-220px); }
+  .card:nth-child(5) { transform: rotate(120deg) translateY(-220px); }
+  .card:nth-child(6) { transform: rotate(150deg) translateY(-220px); }
+  .card:nth-child(7) { transform: rotate(180deg) translateY(-220px); }
+  .card:nth-child(8) { transform: rotate(210deg) translateY(-220px); }
+  .card:nth-child(9) { transform: rotate(240deg) translateY(-220px); }
+  .card:nth-child(10) { transform: rotate(270deg) translateY(-220px); }
+  .card:nth-child(11) { transform: rotate(300deg) translateY(-220px); }
+  .card:nth-child(12) { transform: rotate(330deg) translateY(-220px); }
   
 .card.selected, .card-alternative.selected {
     transform: scale(1.5);
@@ -375,7 +376,24 @@ body.dashboard-admin-page {
     display: flex;
 }
 
+.logout-container {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 40%;
+}
+
 .illustration {
+    background: url("/assets/zodiak-bear-s.png") no-repeat center center;
+    background-size: cover;
+    width: 50%;
+    display: none;
+}
+
+.illustration-l {
     background: url('https://via.placeholder.com/400x600') no-repeat center center;
     background-size: cover;
     width: 50%;
@@ -490,13 +508,10 @@ table {
     table-layout: auto;
 }
 
-thead {
-    background-color: #6a11cb; 
-    color: white;
-    font-weight: bold;
-}
-
 thead th {
+    background-color: #6a11cb !important;
+    color: white !important;
+    font-weight: bold;
     text-align: center;
     padding: 12px 16px;
     vertical-align: middle;

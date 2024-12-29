@@ -10,9 +10,9 @@ $showWheel = true;
 
 // determine if user is an admin
 if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
-    if ($stmt = $conn->prepare("SELECT is_admin FROM users WHERE id = ?")) {
+    if ($stmt = $conn->prepare("SELECT zodiac_sign, is_admin FROM users WHERE id = ?")) {
         
-        $stmt->bind_param("i", $_SESSION['userID']);
+        $stmt->bind_param("i",$_SESSION['userID']);
         
         $stmt->execute();
         $result = $stmt->get_result();
@@ -20,6 +20,7 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $is_admin = $row['is_admin'];
+                $userZodiac = $row['zodiac_sign'];
             }
         } else {
             echo "No user found with the specified ID.";
@@ -68,7 +69,7 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zodiac Wheel</title>
+    <title>Zodiak Bear | The Zodiak Wheel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,6 +136,11 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
                 <p>
                     <?php echo "$zodiac_desc"?>
                 </p>
+                    <?php 
+                        if ($userZodiac==$zodiac_name){
+                            echo '<a href="/user/dashboard.php" class="btn btn-primary" style="display:inline-block; margin-top:48px; text-decoration:none;">What does this mean for me?</a>';
+                        }
+                    ?>
             </div>
             <!-- External Articles Section -->
             <div class="external-articles">

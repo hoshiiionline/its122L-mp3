@@ -13,10 +13,10 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-   <title>Logged Out</title>
+   <title>Zodiak Bear | Logged Out</title>
 </head>
 <body class="registration-login-page">
-<div class="register-container">
+<div class="logout-container">
       <h1><strong><b>Logged out</b></strong></h1>
       <h4>You have successfully logged out!</h4>
 </div>

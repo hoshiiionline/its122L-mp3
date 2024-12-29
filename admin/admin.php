@@ -7,7 +7,7 @@ $zodiac_date_range = 'Select a zodiac sign to show the date.';
 $zodiac_desc = 'Find out about zodiac signs by clicking on the cards in the horoscope wheel.';
 $showWheel = true;
 
-echo 'userID='. $_SESSION['userID'];
+//echo 'userID='. $_SESSION['userID'];
 if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
     if ($stmt = $conn->prepare("SELECT is_admin FROM users WHERE id = ?")) {
         
@@ -64,17 +64,17 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css"> <!-- Link to CSS -->
-    <script src="../js/script.js"></script>
+    <title>Zodiak Bear | Admin Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css"> <!-- Link to CSS -->
+    <script src="../js/script.js"></script>
 </head>
 <body class="dashboard-page">
     <!-- Navbar -->
@@ -169,7 +169,7 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
             <div class="external-articles">
                 <div class="table-container">
                     <table class="table table-bordered">
-                        <thead>
+                        <thead style="background-color: black !important; color: black;">
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>

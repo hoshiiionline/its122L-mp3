@@ -71,7 +71,7 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Dashboard</title>
+    <title>Zodiak Bear | My Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,8 +105,9 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
         <div class="left-column">
             <div class="circle-container">
                 <?php
-                    echo '<div class="circle">
-                    <img src="/assets/zodiacs-alt/'.$zodiac_sign.'.png" class="card-alternative" alt="'.$zodiac_sign.'">
+                    echo '
+                    <div class="circle">
+                        <img src="/assets/zodiacs-alt/'.$zodiac_sign.'.png" class="card-alternative" alt="'.$zodiac_sign.'" onclick="window.location.href=\'/user/zodiacs.php\';">
                     </div>
                     ';
                 ?>
@@ -246,65 +247,8 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
             </div>
         </div>
     </div>
-    
-    <form id="altForm" method="POST" style="display: none;">
-        <input type="hidden" name="alt" id="altInput">
-    </form>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.card');
-            const altForm = document.getElementById('altForm');
-            const altInput = document.getElementById('altInput');
-
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    // Remove 'selected' class from all cards
-                    cards.forEach(c => c.classList.remove('selected', 'not-selected'));
-
-                    // Add 'selected' class to the clicked card
-                    card.classList.add('selected');
-
-                    // Add 'not-selected' class to all non-selected cards
-                    cards.forEach(c => {
-                        if (!c.classList.contains('selected')) {
-                            c.classList.add('not-selected');
-                        }
-                    });
-
-                    const altText = card.alt;
-                    altInput.value = altText;
-                    altForm.submit();
-                });
-            });
-        });
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.card-alternative');
-            const altForm = document.getElementById('altForm');
-            const altInput = document.getElementById('altInput');
-
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    // Remove 'selected' class from all cards
-                    cards.forEach(c => c.classList.remove('selected', 'not-selected'));
-
-                    // Add 'selected' class to the clicked card
-                    card.classList.add('selected');
-
-                    // Add 'not-selected' class to all non-selected cards
-                    cards.forEach(c => {
-                        if (!c.classList.contains('selected')) {
-                            c.classList.add('not-selected');
-                        }
-                    });
-
-                    const altText = card.alt;
-                    altInput.value = altText;
-                    altForm.submit();
-                });
-            });
-        });
     </script>
 </body>
 </html>
