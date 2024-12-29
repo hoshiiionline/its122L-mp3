@@ -9,6 +9,31 @@ $birthMonth = '';
 $birthYear = '';
 $gender = '';
 
+// determine if user is an admin
+if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
+    if ($stmt = $conn->prepare("SELECT is_admin FROM users WHERE id = ?")) {
+        
+        $stmt->bind_param("i", $_SESSION['userID']);
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $is_admin = $row['is_admin'];
+            }
+        } else {
+            echo "No user found with the specified ID.";
+        }
+
+        $stmt->close();
+    } else {
+        echo "Failed to prepare the SQL statement.";
+    }
+} else {
+    echo "Invalid or missing user ID.";
+}
+
 if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
     if ($stmt = $conn->prepare("SELECT first_name, last_name, email, birth_month, birth_day, birth_year, gender FROM users WHERE id = ?")) {
         
@@ -133,6 +158,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="zodiacs.php">Zodiac Wheel</a></li>
                 <li><a href="#">Profile</a></li>
+                
+                <?php 
+                if ((int)$is_admin === 1) {
+                    echo "<li> | </li>
+                    <li><a href='admin.php'>Edit</a></li>";
+                }
+                ?>
                 <li><a href="logout.php">Sign Out</a></li>
             </ul>
         </div>

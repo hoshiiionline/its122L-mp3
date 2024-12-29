@@ -8,6 +8,31 @@ $zodiac_desc = 'Find out about zodiac signs by clicking on the cards in the horo
 $zodiac_news = 'News about Zodiac Signs';
 $showWheel = true;
 
+// determine if user is an admin
+if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
+    if ($stmt = $conn->prepare("SELECT is_admin FROM users WHERE id = ?")) {
+        
+        $stmt->bind_param("i", $_SESSION['userID']);
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $is_admin = $row['is_admin'];
+            }
+        } else {
+            echo "No user found with the specified ID.";
+        }
+
+        $stmt->close();
+    } else {
+        echo "Failed to prepare the SQL statement.";
+    }
+} else {
+    echo "Invalid or missing user ID.";
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['alt'])) {
     $selectedAlt = htmlspecialchars($_POST['alt']);
     $zodiac_news = "$selectedAlt News";
@@ -59,6 +84,13 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="#">Zodiac Wheel</a></li>
                 <li><a href="profile.php">Profile</a></li>
+                
+                <?php 
+                if ((int)$is_admin === 1) {
+                    echo "<li> | </li>
+                    <li><a href='admin.php'>Edit</a></li>";
+                }
+                ?>
                 <li><a href="logout.php">Sign Out</a></li>
             </ul>
         </div>

@@ -16,10 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (password_verify($password, $stored_hash)) {
         if ($is_admin == 1) {
-            echo 'Login successful! You are an admin!';
+            $_SESSION['userID'] = $userID;
             header('Location: admin.php');
         } else {
-            echo 'Login successful! You are a user!';
             $_SESSION['userID'] = $userID;
             header('Location: dashboard.php');
         }
