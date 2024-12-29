@@ -32,4 +32,4 @@ if ($rssFeed) {
 <?php else: ?>
     <p>No articles found.</p>
 <?php endif; ?>
-<script src="script.js"></script>
+<script src="../js/script.js"></script>

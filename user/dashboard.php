@@ -1,6 +1,6 @@
 <?php 
-require "config.php";
-require "randomGenerator.php";
+require "../config/config.php";
+require "../config/randomGenerator.php";
 
 // get user's zodiac sign based on session ID
 if ($stmt = $conn->prepare("SELECT zodiac_sign FROM users WHERE id = ?")) {
@@ -71,12 +71,12 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zodiac Dashboard</title>
+    <title>My Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> <!-- Link to CSS -->
+    <link rel="stylesheet" href="../css/style.css"> <!-- Link to CSS -->
 </head>
 <body class="dashboard-page">
     <!-- Navbar -->
@@ -91,10 +91,10 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
                 <?php 
                 if ((int)$is_admin === 1) {
                     echo "<li> | </li>
-                    <li><a href='admin.php'>Edit</a></li>";
+                    <li><a href='../admin/admin.php'>Edit</a></li>";
                 }
                 ?>
-                <li><a href="logout.php">Sign Out</a></li>
+                <li><a href="../login-register/logout.php">Sign Out</a></li>
             </ul>
         </div>
     </nav>
@@ -234,7 +234,7 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
 
                 $tempFile = tmpfile();
                 $tempFilePath = stream_get_meta_data($tempFile)['uri'];
-                $phpCode = '<?php $_GET["keyword"] = "' . addslashes($keyword) . '"; include "news.php"; ?>';
+                $phpCode = '<?php $_GET["keyword"] = "' . addslashes($keyword) . '"; include "../config/news.php"; ?>';
                 fwrite($tempFile, data: $phpCode);
 
                 include $tempFilePath;

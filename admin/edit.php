@@ -1,10 +1,34 @@
 <?php
-include("config.php");
+include("../config/config.php");
 
 // Initialize variables
 $zodiac_name = $zodiac_date_range = $zodiac_desc = '';
 $first_name = $last_name = $email = $birthMonth = $birthYear = $birthDay = $gender = $zodiacSign = $is_admin = '';
 $table = '';
+
+if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
+    if ($stmt = $conn->prepare("SELECT is_admin FROM users WHERE id = ?")) {
+        
+        $stmt->bind_param("i", $_SESSION['userID']);
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $is_admin = $row['is_admin'];
+            }
+        } else {
+            echo "No user found with the specified ID.";
+        }
+
+        $stmt->close();
+    } else {
+        echo "Failed to prepare the SQL statement.";
+    }
+} else {
+    echo "Invalid or missing user ID.";
+}
 
 if (isset($_GET['id']) && isset($_GET['table'])) {
     $id = htmlspecialchars($_GET['id']);
@@ -30,7 +54,7 @@ if ($table == 'zodiac') {
         // Check if the query was successful
         if ($result) {
             // Redirect to homepage to display updated user in list
-            header("Location: admin.php");
+            header("Location: ../admin/admin.php");
             exit(); 
         } else {
             echo "Error updating record: " . mysqli_error($conn);
@@ -66,7 +90,7 @@ if ($table == 'zodiac') {
 
         if ($result) {
             // Redirect to homepage to display updated user in list
-            header("Location: admin.php");
+            header("Location: ../admin/admin.php");
             exit(); 
         } else {
             echo "Error updating record: " . mysqli_error($conn);
@@ -97,16 +121,16 @@ if ($table == 'zodiac') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>Edit Record</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
 </head>
 <body class="registration-login-page">
     <div class="registration-container">
@@ -140,7 +164,7 @@ if ($table == 'zodiac') {
                             </div>
                         </div>
                         <div class="button-container">
-                            <a href="admin.php" class="logout-btn">Cancel</a>
+                            <a href="../admin/admin.php" class="logout-btn">Cancel</a>
                             <input type="submit" name="update" value="Update" class="add-user-btn">
                         </div>';
                     } elseif ($table == 'users') {
@@ -202,7 +226,7 @@ if ($table == 'zodiac') {
                             </div>
                         </div>
                         <div class="button-container">
-                            <a href="admin.php" class="logout-btn">Cancel</a>
+                            <a href="../adminadmin.php" class="logout-btn">Cancel</a>
                             <input type="submit" name="update" value="Update" class="add-user-btn">
                         </div>';
                     } else {

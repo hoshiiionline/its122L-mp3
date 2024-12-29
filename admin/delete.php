@@ -1,5 +1,5 @@
 <?php 
-include_once("config.php");
+include_once("../config/config.php");
 
 $table = '';
 
@@ -22,5 +22,5 @@ if ($table == 'users') {
     echo "Error: Table not found.";
 }
 
-header("Location:admin.php");
+header("Location:../admin/admin.php");
 ?>
