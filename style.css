@@ -260,7 +260,6 @@ body.dashboard-admin-page {
 }
 
 .external-articles a {
-    color: #6a11cb;
     text-decoration: none;
 }
 
@@ -630,4 +629,35 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: both; /* Allows the user to resize both vertically and horizontally */
+}
+
+.article {
+    padding: 10px;
+}
+
+.article h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.article p {
+    margin: 10px 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc; 
+    margin: 10px 0; 
+}
+
+.article a:link, 
+.article a:visited, 
+.article a:hover, 
+.article a:active {
+    color:rgba(106, 17, 203, 0.9) !important;    
+    background-color: transparent !important;
+}
+
+.spacer {
+    height: 3px; 
 }

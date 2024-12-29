@@ -20,10 +20,9 @@ if ($rssFeed) {
 }
 ?>
 
-<h1>Horoscope News Articles</h1>
-
 <?php if (!empty($articles)): ?>
     <?php foreach ($articles as $article): ?>
+        <hr>
         <div class="article">
             <h2><a href="<?= $article['link']; ?>"  onclick='return confirmRedirect();' target="_blank"><?= $article['title']; ?></a></h2>
             <p><?= $article['description']; ?></p>

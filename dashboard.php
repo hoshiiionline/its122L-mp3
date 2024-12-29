@@ -1,17 +1,28 @@
-<?php
-require 'config.php';
+<?php 
+require "config.php";
+require "randomGenerator.php";
 
-$selectedAlt = '';
-$zodiac_name = 'Select a zodiac sign from the horoscope wheel.';
-$zodiac_date_range = 'The date range will pop up here';    
-$zodiac_desc = 'Find out about zodiac signs by clicking on the cards in the horoscope wheel.';
+// get user's zodiac sign based on session ID
+if ($stmt = $conn->prepare("SELECT zodiac_sign FROM users WHERE id = ?")) {
+    $stmt->bind_param("i", $_SESSION['userID']);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['alt'])) {
-    $selectedAlt = htmlspecialchars($_POST['alt']);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $zodiac_sign = $row['zodiac_sign'];
+        }
+    } 
+
+    $stmt->close();
+} else {
+    echo "Failed to prepare the SQL statement.";
 }
 
+// retrieve horoscope-related information based on user's zodiac sign
+
 if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc FROM zodiac_signs WHERE zodiac_name = ?")) {
-    $stmt->bind_param("s", $selectedAlt);
+    $stmt->bind_param("s", $zodiac_sign);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -27,6 +38,8 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
 } else {
     echo "Failed to prepare the SQL statement.";
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +61,8 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
             <h1 class="navbar-title">Zodiac Dashboard</h1>
             <ul class="navbar-links">
                 <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="zodiacs.php">Zodiac Wheel</a></li>
+                <li><a href="profile.php">Profile</a></li>
                 <li><a href="#">Sign Out</a></li>
             </ul>
         </div>
@@ -59,36 +73,130 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
         <!-- Left Column -->
         <div class="left-column">
             <div class="circle-container">
-                <div class="circle">
-                    <img src="/assets/zodiacs-alt/Aries.png" class="card" alt="Aries">
-                    <img src="/assets/zodiacs-alt/Taurus.png" class="card" alt="Taurus">
-                    <img src="/assets/zodiacs-alt/Gemini.png" class="card" alt="Gemini">
-                    <img src="/assets/zodiacs-alt/Cancer.png" class="card" alt="Cancer">
-                    <img src="/assets/zodiacs-alt/Leo.png" class="card" alt="Leo">
-                    <img src="/assets/zodiacs-alt/Virgo.png" class="card" alt="Virgo">
-                    <img src="/assets/zodiacs-alt/Libra.png" class="card" alt="Libra">
-                    <img src="/assets/zodiacs-alt/Scorpio.png" class="card" alt="Scorpio">
-                    <img src="/assets/zodiacs-alt/Sagittarius.png" class="card" alt="Sagittarius">
-                    <img src="/assets/zodiacs-alt/Capricorn.png" class="card" alt="Capricorn">
-                    <img src="/assets/zodiacs-alt/Aquarius.png" class="card" alt="Aquarius">
-                    <img src="/assets/zodiacs-alt/Pisces.png" class="card" alt="Pisces">
-                </div>
+                <?php
+                    echo '<div class="circle">
+                    <img src="/assets/zodiacs-alt/'.$zodiac_sign.'.png" class="card-alternative" alt="'.$zodiac_sign.'">
+                    </div>
+                    ';
+                ?>
             </div>
         </div>
 
         <!-- Right Column -->
         <div class="right-column">
-            <!-- Description Section -->
+            <!-- Daily Section -->
             <div class="description">
-                <h2>Zodiac Sign: <?php echo"$zodiac_name"?></h2>
+                <h2><b><?php echo"$zodiac_name"?> Horoscope of the Day</b></h2>
+                <center><p><q><i><?php echo $horoscopeAries?></i></q></p></center>
                 <p><strong>Date Range:</strong> <?php echo"$zodiac_date_range"?></p>
                 <p>
                     <?php echo "$zodiac_desc"?>
                 </p>
             </div>
 
+            <!-- Stats Section -->
+            <div class="description">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <b><h2>Ratings of the Month:</h2></b>
+                        <hr>
+                        <p>Love:
+                            <?php 
+                                for ($i = 0; $i < mt_rand(1,5); $i++) {
+                                    echo "🩷";
+                                }
+                            ?>                        
+                        </p>
+                        <p>Career:
+                            <?php 
+                                for ($i = 0; $i < mt_rand(1,5); $i++) {
+                                    echo "💼";
+                                }
+                            ?>                        
+                        </p>                        
+                        <p>Money:
+                            <?php 
+                                for ($i = 0; $i < mt_rand(1,5); $i++) {
+                                    echo "💵";
+                                }
+                            ?>                        
+                        </p>
+                        <p>Health:
+                            <?php 
+                                for ($i = 0; $i < mt_rand(1,5); $i++) {
+                                    echo "🌱";
+                                }
+                            ?>                        
+                        </p>
+                        <p>Learning:
+                            <?php 
+                                for ($i = 0; $i < mt_rand(1,5); $i++) {
+                                    echo "📚";
+                                }
+                            ?>                        
+                        </p>  
+                        <hr>
+                        <p>Opportunities:
+                            <?php 
+                                for ($i = 0; $i < mt_rand(1,5); $i++) {
+                                    echo "❕";
+                                }
+                            ?>                        
+                        </p>
+                        <p>Challenges:
+                            <?php 
+                                for ($i = 0; $i < mt_rand(1,5); $i++) {
+                                    echo "🛑";
+                                }
+                            ?>       
+                        </p>
+                        <p>Overall Rating:
+                            <?php 
+                                for ($i = 0; $i < mt_rand(1,5); $i++) {
+                                    echo "⭐";
+                                }
+                            ?>
+                        </p>               
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <h2>This Month's Matches</h2>
+                        <p><strong>Cosmic Allies 🫂:</strong><br>
+                            <?php 
+                                echo implode(", ", $cosmicAllies);
+                            ?>
+                        </p>
+                        <div class="spacer"></div>   
+                        <p><strong>Cosmic Clashes ❌:</strong><br>
+                            <?php 
+                                echo implode(", ", $cosmicClashes);
+                            ?>
+                        </p>   
+                        <div class="spacer"></div>   
+                        <p><strong>Astral Pals 🙌:</strong><br>
+                            <?php 
+                                echo implode(", ", $astralPals);
+                            ?>
+                        </p>  
+                        <div class="spacer"></div>   
+                        <p><strong>Celestial Love Matches 💞:</strong><br>
+                            <?php 
+                                echo implode(", ", $celestialLoveMatches);
+                            ?>
+                        </p>   
+                        <div class="spacer"></div>   
+                        <p><strong>Fortune Stars 💰:</strong><br>
+                            <?php 
+                                echo implode(", ", $fortuneStars);
+                            ?>
+                        </p>  
+                    </div>
+                </div>
+            </div>
+
             <!-- External Articles Section -->
             <div class="external-articles">
+            <header><h2><b><?php echo "$zodiac_sign";?> News</b></h2></header>
             <?php
                 $keyword = $zodiac_name;
                 ob_start();
@@ -96,16 +204,15 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
                 $tempFile = tmpfile();
                 $tempFilePath = stream_get_meta_data($tempFile)['uri'];
                 $phpCode = '<?php $_GET["keyword"] = "' . addslashes($keyword) . '"; include "news.php"; ?>';
-                fwrite($tempFile, $phpCode);
+                fwrite($tempFile, data: $phpCode);
 
                 include $tempFilePath;
 
                 ob_end_flush();
 
                 fclose($tempFile);
-    ?>
+            ?>
             </div>
-        
         </div>
     </div>
     
@@ -113,7 +220,6 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
         <input type="hidden" name="alt" id="altInput">
     </form>
 
-    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.card');
@@ -122,6 +228,46 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
 
             cards.forEach(card => {
                 card.addEventListener('click', () => {
+                    // Remove 'selected' class from all cards
+                    cards.forEach(c => c.classList.remove('selected', 'not-selected'));
+
+                    // Add 'selected' class to the clicked card
+                    card.classList.add('selected');
+
+                    // Add 'not-selected' class to all non-selected cards
+                    cards.forEach(c => {
+                        if (!c.classList.contains('selected')) {
+                            c.classList.add('not-selected');
+                        }
+                    });
+
+                    const altText = card.alt;
+                    altInput.value = altText;
+                    altForm.submit();
+                });
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card-alternative');
+            const altForm = document.getElementById('altForm');
+            const altInput = document.getElementById('altInput');
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Remove 'selected' class from all cards
+                    cards.forEach(c => c.classList.remove('selected', 'not-selected'));
+
+                    // Add 'selected' class to the clicked card
+                    card.classList.add('selected');
+
+                    // Add 'not-selected' class to all non-selected cards
+                    cards.forEach(c => {
+                        if (!c.classList.contains('selected')) {
+                            c.classList.add('not-selected');
+                        }
+                    });
+
                     const altText = card.alt;
                     altInput.value = altText;
                     altForm.submit();

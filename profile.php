@@ -130,7 +130,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="navbar-container">
             <h1 class="navbar-title">Zodiac Dashboard</h1>
             <ul class="navbar-links">
-                <li><a href="#">Dashboard</a></li>
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="zodiacs.php">Zodiac Wheel</a></li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">Sign Out</a></li>
             </ul>
