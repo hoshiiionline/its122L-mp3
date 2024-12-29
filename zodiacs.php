@@ -59,7 +59,7 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="#">Zodiac Wheel</a></li>
                 <li><a href="profile.php">Profile</a></li>
-                <li><a href="#">Sign Out</a></li>
+                <li><a href="logout.php">Sign Out</a></li>
             </ul>
         </div>
     </nav>

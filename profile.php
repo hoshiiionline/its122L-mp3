@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="zodiacs.php">Zodiac Wheel</a></li>
                 <li><a href="#">Profile</a></li>
-                <li><a href="#">Sign Out</a></li>
+                <li><a href="logout.php">Sign Out</a></li>
             </ul>
         </div>
     </nav>

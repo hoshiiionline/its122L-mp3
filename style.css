@@ -661,3 +661,36 @@ hr {
 .spacer {
     height: 3px; 
 }
+
+body.register {
+    display: flex;
+}
+
+.progress-bar {
+    width: 80%;
+    max-width: 400px;
+    height: 10px;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.progress-bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: #4caf50;
+    animation: load 1s linear forwards;
+}
+
+@keyframes load {
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
