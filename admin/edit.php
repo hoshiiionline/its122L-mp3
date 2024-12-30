@@ -226,7 +226,7 @@ if ($table == 'zodiac') {
                             </div>
                         </div>
                         <div class="button-container">
-                            <a href="../adminadmin.php" class="logout-btn">Cancel</a>
+                            <a href="../admin/admin.php" class="logout-btn">Cancel</a>
                             <input type="submit" name="update" value="Update" class="add-user-btn">
                         </div>';
                     } else {
