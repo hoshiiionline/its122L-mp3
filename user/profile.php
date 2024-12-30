@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $birthMonth = intval($_POST['birthMonth']);
         $birthDate = intval($_POST['birthDate']);
         $birthYear = intval($_POST['birthYear']);
-        $gender = trim($_POST['gender']);
+        $gender = isset($_POST["gender"]) ? $_POST["gender"]: "";
 
         $sql = "UPDATE users SET first_name = ?, last_name = ?, email = ?, birth_month = ?, birth_day = ?, birth_year = ?, gender = ? WHERE id = ?";
         $stmt = mysqli_prepare($conn, $sql);
