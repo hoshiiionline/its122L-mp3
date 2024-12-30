@@ -2,6 +2,8 @@
 require "../config/config.php";
 require "../config/randomGenerator.php";
 
+$page_name = "My Dashboard";
+
 // get user's zodiac sign based on session ID
 if ($stmt = $conn->prepare("SELECT zodiac_sign FROM users WHERE id = ?")) {
     $stmt->bind_param("i", $_SESSION['userID']);
@@ -82,7 +84,7 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
-            <h1 class="navbar-title">Zodiac Dashboard</h1>
+        <h1 class="navbar-title">Zodiak Bear | <?php echo "$page_name";?></h1>
             <ul class="navbar-links">
                 <li><a href="#">Dashboard</a></li>
                 <li><a href="zodiacs.php">Zodiac Wheel</a></li>

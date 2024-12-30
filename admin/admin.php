@@ -5,6 +5,7 @@ $selectedAlt = '';
 $zodiac_name = 'Select a zodiac sign from the horoscope wheel.';
 $zodiac_date_range = 'Select a zodiac sign to show the date.';
 $zodiac_desc = 'Find out about zodiac signs by clicking on the cards in the horoscope wheel.';
+$page_name = "Admin Dashboard";
 $showWheel = true;
 
 //echo 'userID='. $_SESSION['userID'];
@@ -80,7 +81,7 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
-            <h1 class="navbar-title">Zodiac Dashboard</h1>
+            <h1 class="navbar-title">Zodiak Bear | <?php echo "$page_name";?></h1>
             <ul class="navbar-links">
                 <li><a href="../user/dashboard.php">Dashboard</a></li>
                 <li><a href="../user/zodiacs.php">Zodiac Wheel</a></li>

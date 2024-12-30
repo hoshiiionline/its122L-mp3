@@ -8,6 +8,7 @@ $birthDate = '';
 $birthMonth = '';
 $birthYear = '';
 $gender = '';
+$page_name = "My Zodiak Profile";
 
 // determine if user is an admin
 if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
@@ -153,8 +154,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
-            <h1 class="navbar-title">Zodiak Bear</h1>
-            <ul class="navbar-links">
+        <h1 class="navbar-title">Zodiak Bear | <?php echo "$page_name";?></h1>
+        <ul class="navbar-links">
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="zodiacs.php">Zodiac Wheel</a></li>
                 <li><a href="#">Profile</a></li>

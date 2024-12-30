@@ -7,6 +7,7 @@ $zodiac_date_range = 'The date range will pop up here';
 $zodiac_desc = 'Find out about zodiac signs by clicking on the cards in the horoscope wheel.';
 $zodiac_news = 'News about Zodiac Signs';
 $showWheel = true;
+$page_name = "Zodiak Wheel";
 
 // determine if user is an admin
 if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
@@ -80,8 +81,8 @@ if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc F
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
-            <h1 class="navbar-title">Zodiac Dashboard</h1>
-            <ul class="navbar-links">
+        <h1 class="navbar-title">Zodiak Bear | <?php echo "$page_name";?></h1>
+        <ul class="navbar-links">
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="#">Zodiac Wheel</a></li>
                 <li><a href="profile.php">Profile</a></li>
