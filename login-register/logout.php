@@ -3,7 +3,7 @@
    unset($_SESSION["email"]);
    unset($_SESSION["password"]);
    
-   header('Refresh: 1; URL = logoutredirect.php');
+   header(header: 'Refresh: 1; URL = logoutredirect.php');
 ?>
 
 <!DOCTYPE html>

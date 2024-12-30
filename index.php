@@ -1,3 +1,6 @@
+<?php
+   header(header: 'Refresh: 0; URL = ../login-register/login.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
