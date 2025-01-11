@@ -37,6 +37,10 @@ CREATE TABLE `users` (
   `birth_day` int(2) NOT NULL,
   `birth_year` int(4) NOT NULL,
   `gender` char(6) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `barangay` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `province` varchar(255) NOT NULL,
   `zodiac_sign` varchar(255) NOT NULL,
   `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   PRIMARY KEY (`id`)
@@ -46,10 +50,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`,`is_admin`, `first_name`, `last_name`, `email`, `password`, `birth_month`, `birth_day`, `birth_year`, `zodiac_sign`, `gender` `created_at`) VALUES
-(0, 1, 'Todin', 'Castaneda', 'todin.castaneda@gmail.com', '$2y$12$uXbLUIvW3xvBekIMyNoFveyz1UCKZ9xuY8Pll.mx6PAgGxLswQMVy', 2, 26, 2004, "Pisces", "Male", current_timestamp(6)),  
-(1, 0, 'Kyle', 'Flores', 'genekylemichaelf@gmail.com', '$2y$12$rwobRHctp.0jVOwQLPF9ROQHJVSjp.Pg.P8nu9O1F6S3q9e3Uxipm', 10, 14, 2003, "Libra", "Gay", current_timestamp(6)),
-(2, 0, 'Erin', 'Lorzano', 'erinlorzano@gmail.com', '$2y$12$25XuOEw.hlj064v2sYgG8uNghcWyhKE7pKB3wPvt1FIs7Dy8ABzh6', 9, 28, 2003, "Libra", "Female", current_timestamp(6));
+INSERT INTO `users` (`id`,`is_admin`, `first_name`, `last_name`, `email`, `password`, `birth_month`, `birth_day`, `birth_year`, `zodiac_sign`, `gender`, `address`, `created_at`) VALUES
+(0, 1, 'Todin', 'Castaneda', 'todin.castaneda@gmail.com', '$2y$12$uXbLUIvW3xvBekIMyNoFveyz1UCKZ9xuY8Pll.mx6PAgGxLswQMVy', 2, 26, 2004, "Pisces", "Male", `28+Paraluman+St+Rosario+Pasig`,current_timestamp(6)),  
+(1, 0, 'Kyle', 'Flores', 'genekylemichaelf@gmail.com', '$2y$12$rwobRHctp.0jVOwQLPF9ROQHJVSjp.Pg.P8nu9O1F6S3q9e3Uxipm', 10, 14, 2003, "Libra", "Gay", `129+Charisma+St+Rosario+Pasig`, current_timestamp(6)),
+(2, 0, 'Erin', 'Lorzano', 'erinlorzano@gmail.com', '$2y$12$25XuOEw.hlj064v2sYgG8uNghcWyhKE7pKB3wPvt1FIs7Dy8ABzh6', 9, 28, 2003, "Libra", "Female", `SM+Taytay`, current_timestamp(6));
 
 --
 -- AUTO_INCREMENT for dumped tables

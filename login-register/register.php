@@ -4,6 +4,7 @@ $regis_success = false;
 $regis_err = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // set address
     $firstName = isset($_POST["firstName"]) ? $_POST["firstName"] :"";
     $lastName = isset($_POST["lastName"]) ? $_POST["lastName"] :"";
     $email = isset($_POST["email"]) ? $_POST["email"] :"";
@@ -13,9 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $birthDate = isset($_POST["birthDate"]) ? $_POST["birthDate"] :"";
     $birthYear = isset($_POST["birthYear"]) ? $_POST["birthYear"] :"";
     $gender = isset($_POST["gender"]) ? $_POST["gender"]: "";
+    $address = isset($_POST["address"]) ? $_POST["address"] :"";
+    $barangay = isset($_POST["barangay"]) ? $_POST["barangay"] :"";
+    $city = isset($_POST["city"]) ? $_POST["city"] :"";
+    $province = isset($_POST["province"]) ? $_POST["province"] :"";
     $zodiac = '';
 
-    if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($confirmPassword) || empty($birthMonth) || empty($birthDate) || empty($birthYear) || empty($gender)) {
+    if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($confirmPassword) || empty($birthMonth) || empty($birthDate) || empty($birthYear) || empty($gender) || empty($address) || empty($barangay) || empty($city) || empty($province)) {
         $regis_err = "Please fill out all fields!";
     } else if ($password != $confirmPassword) {
         $regis_err = "Passwords do not match!";
@@ -120,9 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
-            $sql = "INSERT INTO users (first_name, last_name, email, password, birth_month, birth_day, birth_year, gender, zodiac_sign) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO users (first_name, last_name, email, password, birth_month, birth_day, birth_year, gender, address, barangay, city, province, zodiac_sign) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "ssssiiiss", $firstName, $lastName, $email, $hashed_password, $birthMonth, $birthDate, $birthYear, $gender, $zodiac);
+            mysqli_stmt_bind_param($stmt, "ssssiiissssss", $firstName, $lastName, $email, $hashed_password, $birthMonth, $birthDate, $birthYear, $gender, $address, $barangay, $city, $province, $zodiac);
             
             if (mysqli_stmt_execute($stmt)) {
                 $regis_success = true;
@@ -197,6 +202,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="col-md-4 mb-3">
                         <label for="birthYear" class="form-label">Birth Year</label>
                         <input type="number" class="form-control" name="birthYear" id="birthYear" placeholder="YYYY">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="Address Line" class="form-label">Address</label>
+                    <input type="text" class="form-control" name="address" id="address" placeholder="House Number / Street / Other details">
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="Barangay" class="form-label">Barangay</label>
+                        <input type="text" class="form-control" name="barangay" id="barangay" placeholder="Barangay">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" name="city" id="city" placeholder="City">
+                    </div> 
+                    <div class="col-md-4 mb-3">
+                        <label for="province" class="form-label">Province</label>
+                        <input type="text" class="form-control" name="province" id="province" placeholder="Region / Province">
                     </div>
                 </div>
                 <div class="mb-3">

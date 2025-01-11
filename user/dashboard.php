@@ -22,8 +22,32 @@ if ($stmt = $conn->prepare("SELECT zodiac_sign FROM users WHERE id = ?")) {
     echo "Failed to prepare the SQL statement.";
 }
 
-// retrieve horoscope-related information based on user's zodiac sign
+// retrieve user's address details
+if ($stmt = $conn->prepare("SELECT address, barangay, city, province FROM users WHERE id = ?")) {
+    $stmt->bind_param("i", $_SESSION['userID']);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $address = $row['address'];
+            $barangay = $row['barangay'];
+            $city = $row['city'];
+            $province = $row['province'];
+        }
+    } 
+
+    $stmt->close();
+} else {
+    echo "Failed to prepare the SQL statement.";
+}
+
+// fuse address details into a single string
+$address = preg_replace('/\s+/', '+', $address);
+
+$fullAddress = $address . "+" . $barangay . "+" . $city . "+" . $province;
+
+// retrieve horoscope-related information based on user's zodiac sign
 if ($stmt = $conn->prepare("SELECT zodiac_name, zodiac_date_range, zodiac_desc FROM zodiac_signs WHERE zodiac_name = ?")) {
     $stmt->bind_param("s", $zodiac_sign);
     $stmt->execute();
@@ -256,15 +280,12 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
                 <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FManila&showPrint=0&showTitle=0&showTz=0&showCalendars=0&src=MTA3ODE4MjFhMThhZDgzNTQyNmE3ZWFiMWVhOGUwOTYwOWIzZDljYTdlNGQ3Y2ZiY2M2NDUxYWFjNDIxNjQ1NkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YjNjNDE4ZWZkNTEzZTk4ZTY5N2E2MTVmNDIxNmRjZTgxMDA4OWZlNWY2YTM0NTJiMTYyZWMzMzRmZGUwYjdhNEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=NDBmZTk0NDM3ZTUyZmYxNzc1MjI1NWY0OTZmYzU3NmY5Y2QwZmE5ZTc0OTZiMzI1YWU0OTlhYjg4NjI1YTdlYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZWU5MTczNGQxNDUyNGI0MTRmZjgzOGFhZDI1OTExN2Q2MDgxMmU4N2QyNjA3OGU4ZmVmNDI2MzM4MjI0ZDlhN0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=NzdhMzA3NTQ4MGY2MjQ3N2VmNzFhNGQyMjA5NDczMDA5OTM4MTc3MDJjMzAzNDMyMWY3ZjBlNjhiZDVjMzc1MkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=OTRlNzU2MmRiMjY1NmU0MTM0OTg5OTY1YjViMmViNmExNDFlZTJiZTM0Yzk2YWQwODZlYzg5MTM3NmI0ODFiMUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZTdlYzljOWFiZTg3N2IyM2EzOGQ4YTkyMmY5NTMzZTJiMzQ1NmQwMGU4OTlmMzgwMDU0NGYxNTE1NjFmMjk4NUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=MjIyOWI5YjZjOTVkYzZmN2M5MTQ4YmM1ZjQ1MGI5Yjg1NjdmMGMwZjg3ZDc0YzAxMjBlNGJjOTc3MTBhN2NlZEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=NWI3Y2Y3MTM1YzQ3ZTU5YjA5ZDhkZWMzYmYzNmJlOGQ4ZWU5ZGUwZWMzNDEwOGQ5Nzg0YTk2MDRiNjc2NmIzZEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YjZmNjNjODkxZGI4NzY2MzZmZWNjOGFiZTQyZTNmNjU3MGI2MmE4NjkyOGQ4MDJkMWIzNDQxNDIwM2QwN2YxOEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=MjVkNmMyNTIwOWU2NWQ1Yjg4YmUxOTIyZGJkZDNjMzFlZWJmMDhmZGNkMGYwNTNhNmVjOGYyYTZjNTNjMDNiY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=MWZiMWNhMGI3YjZjMmVhMzhlYWU4MjVkOTA0NjgwZjhjYjc1ODcyYTgyNzAwZWFhNjQ1ZDA1N2NmODU1N2EyMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19nMmJpMDFrY2JucTMwMnQ3Zmp0MGFjNzY3MEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23616161&color=%23a71c1c&color=%2333B679&color=%23b7bec5&color=%23aaa7a3&color=%232e93ab&color=%23acad00&color=%23ccb0ad&color=%2373bb96&color=%23937dbd&color=%23900000&color=%2377c558&color=%23421b04&color=%23E67C73&dates=<?php echo $horoscopeDates[$zodiac_sign]?>&hl=en" 
                     style="border:0; border-width:0; border-radius: 15px; overflow: hidden;" 
                     width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    
-                <!--<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FManila&showPrint=0&showTabs=0&title=Aries&showTz=0&src=Y2I2MWRkZmYzMTJjMDQxZGEzZGVmMGUwOTU1ZDU0OWYyODc3NDMxY2QyZjE2ZDFlZWE3YjE2ODhjN2Y4ZTI2N0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23A79B8E&dates=<?php echo $horoscopeDates[$zodiac_sign]?>&hl=en" style="border:0; border-width:0" width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                -->
             </div>
             </div>
 
             <!-- Google Maps -->
             <div class="external-articles">
-            <header><h2><b>Find Us Here!</b></h2></header>
+            <header><h2><b>My Location</b></h2></header>
                 <!--<div id = "map" style = "border-radius: 10px; overflow: hidden; width: 100%; height: 80%;"></div>-->
                 <iframe
                     id="mapEmbed"
@@ -272,7 +293,7 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
                     height="80%"
                     style="border-radius:10px; overflow:hidden;"
                     loading="lazy"
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC-5CY9mOCeg5Y3IhPqi_Yd0-DZtWrJl-E&q=129+Charisma+Street+Pasig+City&zoom=15">
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC-5CY9mOCeg5Y3IhPqi_Yd0-DZtWrJl-E&q=<?php echo $fullAddress;?>&zoom=15">
                 </iframe>
             </div>   
             
