@@ -227,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php if($regis_success) : ?>
         <script>
             alert("Registration successful!");
-            window.location.href = "..login-register/login.php";
+            window.location.href = "/login-register/login.php";
         </script>
     <?php endif; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

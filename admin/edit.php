@@ -136,7 +136,7 @@ if ($table == 'zodiac') {
     <div class="registration-container">
         <!-- Registration Form Column -->
         <div class="edit-section">
-            <h2 class="form-title">Edit User</h2>
+            <h2 class="form-title">Edit <?php echo $table?></h2>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" onsubmit="return confirmEditUser();">
                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($id, ENT_QUOTES); ?>">
                 <input type="hidden" name="table" value="<?php echo htmlspecialchars($table, ENT_QUOTES); ?>">
