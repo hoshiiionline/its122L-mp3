@@ -3,6 +3,7 @@ require "../config/config.php";
 require "../config/randomGenerator.php";
 
 $page_name = "My Dashboard";
+$oneMonthLater = date("Ymd", strtotime("+1 month"));
 
 // get user's zodiac sign based on session ID
 if ($stmt = $conn->prepare("SELECT zodiac_sign FROM users WHERE id = ?")) {
@@ -250,9 +251,15 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
             </div>    
         <!-- Google Calendar -->
             <div class="external-articles">
+            <div style = "border-radius: 10px; overflow: hidden; width: 100%; height: 250%;">
             <header><h2><b>Zodiak Calendar</b></h2></header>    
-            <div style = "border-radius: 10px; overflow: hidden; width: 100%; height: 80%;">
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FManila&showPrint=0&showTabs=0&title=Zodiak%20Bear&showTz=0&src=Y2I2MWRkZmYzMTJjMDQxZGEzZGVmMGUwOTU1ZDU0OWYyODc3NDMxY2QyZjE2ZDFlZWE3YjE2ODhjN2Y4ZTI2N0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23A79B8E" style="border:0; border-width:0" width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>            </div>   
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FManila&showPrint=0&showTitle=0&showTz=0&showCalendars=0&src=MTA3ODE4MjFhMThhZDgzNTQyNmE3ZWFiMWVhOGUwOTYwOWIzZDljYTdlNGQ3Y2ZiY2M2NDUxYWFjNDIxNjQ1NkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YjNjNDE4ZWZkNTEzZTk4ZTY5N2E2MTVmNDIxNmRjZTgxMDA4OWZlNWY2YTM0NTJiMTYyZWMzMzRmZGUwYjdhNEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=NDBmZTk0NDM3ZTUyZmYxNzc1MjI1NWY0OTZmYzU3NmY5Y2QwZmE5ZTc0OTZiMzI1YWU0OTlhYjg4NjI1YTdlYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZWU5MTczNGQxNDUyNGI0MTRmZjgzOGFhZDI1OTExN2Q2MDgxMmU4N2QyNjA3OGU4ZmVmNDI2MzM4MjI0ZDlhN0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=NzdhMzA3NTQ4MGY2MjQ3N2VmNzFhNGQyMjA5NDczMDA5OTM4MTc3MDJjMzAzNDMyMWY3ZjBlNjhiZDVjMzc1MkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=OTRlNzU2MmRiMjY1NmU0MTM0OTg5OTY1YjViMmViNmExNDFlZTJiZTM0Yzk2YWQwODZlYzg5MTM3NmI0ODFiMUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZTdlYzljOWFiZTg3N2IyM2EzOGQ4YTkyMmY5NTMzZTJiMzQ1NmQwMGU4OTlmMzgwMDU0NGYxNTE1NjFmMjk4NUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=MjIyOWI5YjZjOTVkYzZmN2M5MTQ4YmM1ZjQ1MGI5Yjg1NjdmMGMwZjg3ZDc0YzAxMjBlNGJjOTc3MTBhN2NlZEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=NWI3Y2Y3MTM1YzQ3ZTU5YjA5ZDhkZWMzYmYzNmJlOGQ4ZWU5ZGUwZWMzNDEwOGQ5Nzg0YTk2MDRiNjc2NmIzZEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YjZmNjNjODkxZGI4NzY2MzZmZWNjOGFiZTQyZTNmNjU3MGI2MmE4NjkyOGQ4MDJkMWIzNDQxNDIwM2QwN2YxOEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=MjVkNmMyNTIwOWU2NWQ1Yjg4YmUxOTIyZGJkZDNjMzFlZWJmMDhmZGNkMGYwNTNhNmVjOGYyYTZjNTNjMDNiY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=MWZiMWNhMGI3YjZjMmVhMzhlYWU4MjVkOTA0NjgwZjhjYjc1ODcyYTgyNzAwZWFhNjQ1ZDA1N2NmODU1N2EyMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19nMmJpMDFrY2JucTMwMnQ3Zmp0MGFjNzY3MEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23616161&color=%23a71c1c&color=%2333B679&color=%23b7bec5&color=%23aaa7a3&color=%232e93ab&color=%23acad00&color=%23ccb0ad&color=%2373bb96&color=%23937dbd&color=%23900000&color=%2377c558&color=%23421b04&color=%23E67C73&dates=<?php echo $horoscopeDates[$zodiac_sign]?>&hl=en" 
+                    style="border:0; border-width:0; border-radius: 15px; overflow: hidden;" 
+                    width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    
+                <!--<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FManila&showPrint=0&showTabs=0&title=Aries&showTz=0&src=Y2I2MWRkZmYzMTJjMDQxZGEzZGVmMGUwOTU1ZDU0OWYyODc3NDMxY2QyZjE2ZDFlZWE3YjE2ODhjN2Y4ZTI2N0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23A79B8E&dates=<?php echo $horoscopeDates[$zodiac_sign]?>&hl=en" style="border:0; border-width:0" width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                -->
+            </div>
             </div>
 
             <!-- Google Maps -->

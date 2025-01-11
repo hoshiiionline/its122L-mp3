@@ -123,4 +123,22 @@ $cosmicClashes = $_SESSION['cosmicClashes'];
 $celestialLoveMatches = $_SESSION['celestialLoveMatches'];
 $astralPals = $_SESSION['astralPals'];
 $fortuneStars = $_SESSION['fortuneStars'];
+
+// set dates for horoscopes
+$horoscopeDates = [
+    "Aries" => "20250321T000000Z/20250419T235959",
+    "Taurus" => "20250420T000000Z/20250520T235959",
+    "Gemini" => "20250521T000000Z/20250620T235959",
+    "Cancer" => "20250621T000000Z/20250722T235959",
+    "Leo" => "20250723T000000Z/20250822T235959",
+    "Virgo" => "20250823T000000Z/20250922T235959",
+    "Libra" => "20250923T000000Z/20251022T235959",
+    "Scorpio" => "20251023T000000Z/20251121T235959",
+    "Sagittarius" => "20251122T000000Z/20251221T235959",
+    "Capricorn" => "20251222T000000Z/20260119T235959",
+    "Aquarius" => "20240120T000000Z/20250218T235959",
+    "Pisces" => "20250219T000000Z/20250320T235959"
+];
+
+
 ?>
