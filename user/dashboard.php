@@ -267,22 +267,10 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
             ?>
             </div>   
             <div class="external-articles">
-            <header><h2><b><?php echo "$zodiac_sign";?> News</b></h2></header>
-            <?php
-                $keyword = $zodiac_name;
-                ob_start();
-
-                $tempFile = tmpfile();
-                $tempFilePath = stream_get_meta_data($tempFile)['uri'];
-                $phpCode = '<?php $_GET["keyword"] = "' . addslashes($keyword) . '"; include "../config/news.php"; ?>';
-                fwrite($tempFile, data: $phpCode);
-
-                include $tempFilePath;
-
-                ob_end_flush();
-
-                fclose($tempFile);
-            ?>
+            <header><h2><b>Find Us Here!</b></h2></header>
+                <div style = "border-radius: 10px; overflow: hidden; width: 100%; height: 80%;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3511.941935895708!2d121.04642143846654!3d14.544541819495311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c8e8c6103bd7%3A0x9ebe82502c3b0c6f!2sEssensa%20East%20Forbes!5e0!3m2!1sen!2sph!4v1736556155055!5m2!1sen!2sph" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>   
     </div>
     </div>
