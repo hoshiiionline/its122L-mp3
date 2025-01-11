@@ -265,14 +265,53 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
             <!-- Google Maps -->
             <div class="external-articles">
             <header><h2><b>Find Us Here!</b></h2></header>
-                <div style = "border-radius: 10px; overflow: hidden; width: 100%; height: 80%;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3511.941935895708!2d121.04642143846654!3d14.544541819495311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c8e8c6103bd7%3A0x9ebe82502c3b0c6f!2sEssensa%20East%20Forbes!5e0!3m2!1sen!2sph!4v1736556155055!5m2!1sen!2sph" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                <!--<div id = "map" style = "border-radius: 10px; overflow: hidden; width: 100%; height: 80%;"></div>-->
+                <iframe
+                    id="mapEmbed"
+                    width="100%"
+                    height="80%"
+                    style="border-radius:10px; overflow:hidden;"
+                    loading="lazy"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC-5CY9mOCeg5Y3IhPqi_Yd0-DZtWrJl-E&q=129+Charisma+Street+Pasig+City&zoom=15">
+                </iframe>
             </div>   
+            
     </div>
     </div>
 
     <script>
+        function initMap() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    // Construct the Google Maps Embed URL dynamically using latitude and longitude
+                    var mapUrl = "https://www.google.com/maps/embed/v1/place?key=AIzaSyC-5CY9mOCeg5Y3IhPqi_Yd0-DZtWrJl-E&q=" + latitude + "," + longitude + "&zoom=15";
+                    
+                    // Update the iframe's src with the new URL
+                    document.getElementById("mapEmbed").src = mapUrl;
+
+                    /*var mapOptions = {
+                        center: new google.maps.LatLng(latitude, longitude),
+                        zoom: 15,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+
+                    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(latitude, longitude),
+                        map: map,
+                        title: 'Your Location'
+                    });*/
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
     </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-5CY9mOCeg5Y3IhPqi_Yd0-DZtWrJl-E&callback=initMap"></script>
 </body>
 </html>
