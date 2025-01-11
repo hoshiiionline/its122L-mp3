@@ -227,8 +227,9 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
                     </div>
                 </div>
             </div>
-
-            <!-- External Articles Section -->
+        </div>
+        <div class="right-column">
+        <!-- External Articles Section -->
             <div class="external-articles">
             <header><h2><b><?php echo "$zodiac_sign";?> News</b></h2></header>
             <?php
@@ -246,8 +247,44 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
 
                 fclose($tempFile);
             ?>
-            </div>
-        </div>
+            </div>    
+            <div class="external-articles">
+            <header><h2><b><?php echo "$zodiac_sign";?> News</b></h2></header>
+            <?php
+                $keyword = $zodiac_name;
+                ob_start();
+
+                $tempFile = tmpfile();
+                $tempFilePath = stream_get_meta_data($tempFile)['uri'];
+                $phpCode = '<?php $_GET["keyword"] = "' . addslashes($keyword) . '"; include "../config/news.php"; ?>';
+                fwrite($tempFile, data: $phpCode);
+
+                include $tempFilePath;
+
+                ob_end_flush();
+
+                fclose($tempFile);
+            ?>
+            </div>   
+            <div class="external-articles">
+            <header><h2><b><?php echo "$zodiac_sign";?> News</b></h2></header>
+            <?php
+                $keyword = $zodiac_name;
+                ob_start();
+
+                $tempFile = tmpfile();
+                $tempFilePath = stream_get_meta_data($tempFile)['uri'];
+                $phpCode = '<?php $_GET["keyword"] = "' . addslashes($keyword) . '"; include "../config/news.php"; ?>';
+                fwrite($tempFile, data: $phpCode);
+
+                include $tempFilePath;
+
+                ob_end_flush();
+
+                fclose($tempFile);
+            ?>
+            </div>   
+    </div>
     </div>
 
     <script>
