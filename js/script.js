@@ -88,7 +88,12 @@ function makeEditable() {
     //document.getElementById('birthMonth').removeAttribute('readonly');
     //document.getElementById('birthDate').removeAttribute('readonly');
     //document.getElementById('birthYear').removeAttribute('readonly');
-    
+
+    document.getElementById('address').removeAttribute('readonly');
+    document.getElementById('barangay').removeAttribute('readonly');
+    document.getElementById('city').removeAttribute('readonly');
+    document.getElementById('province').removeAttribute('readonly');
+
     // Enable gender radio buttons
     //document.getElementById('male').removeAttribute('disabled');
     //document.getElementById('female').removeAttribute('disabled');
@@ -138,6 +143,11 @@ function cancelEdit() {
     //document.getElementById('birthMonth').setAttribute('readonly', true);
     //document.getElementById('birthDate').setAttribute('readonly', true);
     //document.getElementById('birthYear').setAttribute('readonly', true);
+
+    document.getElementById('address').setAttribute('readonly', true);
+    document.getElementById('barangay').setAttribute('readonly', true);
+    document.getElementById('city').setAttribute('readonly', true);
+    document.getElementById('province').setAttribute('readonly', true);
 
     // Disable gender radio buttons
     document.getElementById('male').setAttribute('disabled', true);

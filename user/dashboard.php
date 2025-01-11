@@ -44,6 +44,9 @@ if ($stmt = $conn->prepare("SELECT address, barangay, city, province FROM users 
 
 // fuse address details into a single string
 $address = preg_replace('/\s+/', '+', $address);
+$barangay = preg_replace('/\s+/', '+', $barangay);
+$city = preg_replace('/\s+/', '+', $city);
+$province = preg_replace('/\s+/', '+', $province);
 
 $fullAddress = $address . "+" . $barangay . "+" . $city . "+" . $province;
 

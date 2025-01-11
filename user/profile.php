@@ -10,6 +10,11 @@ $birthYear = '';
 $gender = '';
 $page_name = "My Zodiak Profile";
 
+$address = "";
+$barangay = "";
+$city = "";;
+$province = "";
+
 // determine if user is an admin
 if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
     if ($stmt = $conn->prepare("SELECT is_admin FROM users WHERE id = ?")) {
@@ -36,7 +41,7 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
 }
 
 if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
-    if ($stmt = $conn->prepare("SELECT first_name, last_name, email, birth_month, birth_day, birth_year, gender FROM users WHERE id = ?")) {
+    if ($stmt = $conn->prepare("SELECT first_name, last_name, email, birth_month, birth_day, birth_year,  address, barangay, city, province, gender FROM users WHERE id = ?")) {
         
         $stmt->bind_param("i", $_SESSION['userID']);
         
@@ -52,6 +57,11 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
                 $birthDate = $row['birth_day'];
                 $birthYear = $row['birth_year'];
                 $gender = $row['gender'];
+
+                $address = $row['address'];
+                $barangay = $row['barangay'];
+                $city = $row['city'];
+                $province = $row['province'];
             }
         } else {
             echo "No user found with the specified ID.";
@@ -75,11 +85,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $birthYear = intval($_POST['birthYear']);
         $gender = isset($_POST["gender"]) ? $_POST["gender"]: "";
 
-        $sql = "UPDATE users SET first_name = ?, last_name = ?, email = ?, birth_month = ?, birth_day = ?, birth_year = ?, gender = ? WHERE id = ?";
+        $address = trim($_POST['address']);
+        $barangay = trim($_POST['barangay']);
+        $city = trim($_POST['city']);
+        $province = trim($_POST['province']);
+
+        $sql = "UPDATE users SET first_name = ?, last_name = ?, email = ?, birth_month = ?, birth_day = ?, birth_year = ?, gender = ?, address = ?, barangay = ?, city = ?, province = ? WHERE id = ?";
         $stmt = mysqli_prepare($conn, $sql);
 
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "sssiiisi", $firstName, $lastName, $email, $birthMonth, $birthDate, $birthYear, $gender, $_SESSION['userID']);
+            mysqli_stmt_bind_param($stmt, "sssiiisssssi", $firstName, $lastName, $email, $birthMonth, $birthDate, $birthYear, $gender, $address, $barangay, $city, $province, $_SESSION['userID']);
 
             if (mysqli_stmt_execute($stmt)) {
                 $regis_success = "Information details updated successfully!";
@@ -213,6 +228,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="number" class="form-control" name="birthYear" id="birthYear" placeholder="YYYY" value="<?php echo htmlspecialchars($birthYear); ?>" readonly>
                         </div>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="Address Line" class="form-label">Address</label>
+                        <input type="text" class="form-control" name="address" id="address" placeholder="House Number / Street / Other details" value="<?php echo htmlspecialchars($address); ?>" readonly>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="Barangay" class="form-label">Barangay</label>
+                            <input type="text" class="form-control" name="barangay" id="barangay" placeholder="Barangay" value="<?php echo htmlspecialchars($barangay); ?>" readonly>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" name="city" id="city" placeholder="City" value="<?php echo htmlspecialchars($city); ?>" readonly>
+                        </div> 
+                        <div class="col-md-4 mb-3">
+                            <label for="province" class="form-label">Province</label>
+                            <input type="text" class="form-control" name="province" id="province" placeholder="Region / Province" value="<?php echo htmlspecialchars($province); ?>" readonly>
+                        </div>
+                    </div>
+
                     <div class="mb-3">
                     <label class="form-label">Gender</label>
                         <div class="form-check form-check-inline">

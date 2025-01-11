@@ -3,7 +3,7 @@ include("../config/config.php");
 
 // Initialize variables
 $zodiac_name = $zodiac_date_range = $zodiac_desc = '';
-$first_name = $last_name = $email = $birthMonth = $birthYear = $birthDay = $gender = $zodiacSign = $is_admin = '';
+$first_name = $last_name = $email = $birthMonth = $birthYear = $birthDay = $gender = $zodiacSign = $address = $barangay = $city = $province = $is_admin = '';
 $table = '';
 
 if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
@@ -80,13 +80,18 @@ if ($table == 'zodiac') {
         $gender = $_POST['gender'];
         $zodiacSign = $_POST['zodiac_sign'];
 
+        $address = $_POST['address'];
+        $barangay = $_POST['barangay'];
+        $city = $_POST['city'];
+        $province = $_POST['province'];
+
         $is_admin = 0;
 
         if (isset($_POST['admin-priv'])) {
             $is_admin = ($_POST['admin-priv'] === 'true') ? 1 : 0;
         }
 
-        $result = mysqli_query($conn, "UPDATE users SET first_name='$first_name', is_admin='$is_admin', last_name='$last_name', email='$email', birth_month='$birthMonth', birth_day='$birthDate', birth_year='$birthYear', gender='$gender', zodiac_sign='$zodiacSign' WHERE id=$id");
+        $result = mysqli_query($conn, "UPDATE users SET first_name='$first_name', is_admin='$is_admin', last_name='$last_name', email='$email', birth_month='$birthMonth', birth_day='$birthDate', birth_year='$birthYear', gender='$gender', address='$address', barangay='$barangay', city='$city', province='$province', zodiac_sign='$zodiacSign' WHERE id=$id");
 
         if ($result) {
             // Redirect to homepage to display updated user in list
@@ -107,8 +112,16 @@ if ($table == 'zodiac') {
         $birthYear = $user_data['birth_year'];
         $birthDay = $user_data['birth_day'];
         $gender = $user_data['gender'];
+
+        $address = $user_data['address'];
+        $barangay = $user_data['barangay'];
+        $city = $user_data['city'];
+        $province = $user_data['province'];
+
         $zodiacSign = $user_data['zodiac_sign'];
         $is_admin = $user_data['is_admin'];
+
+        $fullAddress = preg_replace('/\s+/', '+', $address) . "+" . preg_replace('/\s+/', '+', $barangay) . "+" . preg_replace('/\s+/', '+', $city) . "+" . preg_replace('/\s+/', '+', $province);
     }
 } else {
     echo 'Error passing information.';
@@ -188,6 +201,36 @@ if ($table == 'zodiac') {
                                 <input type="text" class="form-control" name="zodiac_sign" id="zodiac_sign" placeholder="Enter zodiac sign of user" value="'.htmlspecialchars($zodiacSign, ENT_QUOTES).'">
                             </div>
                         </div>
+
+                        <iframe
+                            id="mapEmbed"
+                            width="100%"
+                            height="80%"
+                            style="border-radius:10px; overflow:hidden;"
+                            loading="lazy"
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC-5CY9mOCeg5Y3IhPqi_Yd0-DZtWrJl-E&q='.$fullAddress.'&zoom=15">
+                        </iframe>
+
+                        
+                        <div class="mb-3">
+                            <label for="Address Line" class="form-label">Address</label>
+                            <input type="text" class="form-control" name="address" id="address" placeholder="House Number / Street / Other details" value="'.htmlspecialchars($address, ENT_QUOTES).'">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="Barangay" class="form-label">Barangay</label>
+                                <input type="text" class="form-control" name="barangay" id="barangay" placeholder="Barangay" value="'.htmlspecialchars($barangay, ENT_QUOTES).'">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" name="city" id="city" placeholder="City" value="'.htmlspecialchars($city, ENT_QUOTES).'">
+                            </div> 
+                            <div class="col-md-4 mb-3">
+                                <label for="province" class="form-label">Province</label>
+                                <input type="text" class="form-control" name="province" id="province" placeholder="Region / Province" value="'.htmlspecialchars($province, ENT_QUOTES).'">
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <label for="birthMonth" class="form-label">Birth Month</label>
