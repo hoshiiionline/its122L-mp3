@@ -248,24 +248,14 @@ if (isset($_SESSION['userID']) && is_numeric($_SESSION['userID'])) {
                 fclose($tempFile);
             ?>
             </div>    
+        <!-- Google Calendar -->
             <div class="external-articles">
-            <header><h2><b><?php echo "$zodiac_sign";?> News</b></h2></header>
-            <?php
-                $keyword = $zodiac_name;
-                ob_start();
+            <header><h2><b>Zodiak Calendar</b></h2></header>    
+            <div style = "border-radius: 10px; overflow: hidden; width: 100%; height: 80%;">
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FManila&showPrint=0&showTabs=0&title=Zodiak%20Bear&showTz=0&src=Y2I2MWRkZmYzMTJjMDQxZGEzZGVmMGUwOTU1ZDU0OWYyODc3NDMxY2QyZjE2ZDFlZWE3YjE2ODhjN2Y4ZTI2N0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23A79B8E" style="border:0; border-width:0" width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>            </div>   
+            </div>
 
-                $tempFile = tmpfile();
-                $tempFilePath = stream_get_meta_data($tempFile)['uri'];
-                $phpCode = '<?php $_GET["keyword"] = "' . addslashes($keyword) . '"; include "../config/news.php"; ?>';
-                fwrite($tempFile, data: $phpCode);
-
-                include $tempFilePath;
-
-                ob_end_flush();
-
-                fclose($tempFile);
-            ?>
-            </div>   
+            <!-- Google Maps -->
             <div class="external-articles">
             <header><h2><b>Find Us Here!</b></h2></header>
                 <div style = "border-radius: 10px; overflow: hidden; width: 100%; height: 80%;">
